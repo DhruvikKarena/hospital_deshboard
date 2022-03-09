@@ -1,0 +1,60 @@
+.patientList{
+    flex: 4;
+}
+
+.patientListItem{
+    display: flex;
+    align-items: center;
+}
+
+.patientListImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+.patientListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.patientListDelete{
+    color: red;
+    cursor: pointer;
+}
+
+.patientAddButton {
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 1120px;
+    margin-bottom: 10px;
+  }
+  
+.patientListItem.Active{
+    padding: 5px 7px;
+    border: none;
+    border-radius: 10px;
+    background-color: #e5faf2;
+    color: #3bb077;
+}
+.patientListItem.Closed{
+    padding: 5px 7px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff0f1;
+    color: #d95087;
+
+}

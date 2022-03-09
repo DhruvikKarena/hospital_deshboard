@@ -1,0 +1,123 @@
+.doctor {
+  flex: 4;
+  padding: 20px;
+}
+
+.doctorTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.doctorTop {
+  display: flex;
+}
+
+.doctorTopLeft,
+.doctorTopRight {
+  flex: 1;
+}
+
+.doctorTopRight {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.doctorInfoImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.doctorInfoTop {
+  display: flex;
+  align-items: center;
+}
+
+.doctorName {
+  font-weight: 600;
+}
+
+.doctorInfoBottom {
+  margin-top: 10px;
+}
+
+.doctorInfoItem {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.doctorInfoKey{
+  margin-right: 60px;
+}
+
+.doctorInfoValue {
+  font-weight: 300;
+}
+
+.doctorBottom {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.doctorForm {
+  display: flex;
+  justify-content: space-between;
+}
+
+.doctorFormLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctorFormLeft > label {
+  margin-bottom: 10px;
+  color: gray;
+}
+
+.doctorFormLeft > input {
+  margin-bottom: 10px;
+  border: none;
+  padding: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.doctorFormLeft >select{
+  margin-bottom: 10px;
+}
+
+.doctorUploadImg{
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.doctorFormRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.doctorUpload{
+  display: flex;
+  align-items: center;
+}
+
+.doctorButton{
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: darkblue;
+  color:white;
+  font-weight: 600;
+  cursor: pointer;
+}

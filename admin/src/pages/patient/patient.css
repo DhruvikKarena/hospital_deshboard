@@ -1,0 +1,139 @@
+.patient {
+  flex: 4;
+  padding: 20px;
+}
+
+.patientTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.patientTop {
+  display: flex;
+}
+
+.patientTopLeft,
+.patientTopRight {
+  flex: 1;
+}
+
+.patientTopRight {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.patientInfoImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.patientInfoTop {
+  display: flex;
+  align-items: center;
+}
+
+.patientName {
+  font-weight: 600;
+}
+
+.patientInfoBottom {
+  margin-top: 10px;
+}
+
+.patientInfoItem {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.patientInfoKey{
+  margin-right: 60px;
+}
+
+.patientInfoValue {
+  font-weight: 300;
+}
+
+.patientBottom {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.patientForm {
+  display: flex;
+  justify-content: space-between;
+}
+
+.patientFormLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.patientFormLeft > label {
+  margin-bottom: 10px;
+  color: gray;
+}
+
+.patientFormLeft > input {
+  margin-bottom: 10px;
+  border: none;
+  padding: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.patientFormLeft >select{
+  margin-bottom: 10px;
+}
+
+.patientUploadImg{
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.patientFormRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.patientUpload{
+  display: flex;
+  align-items: center;
+}
+
+.patientButton{
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: darkblue;
+  color:white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.patientInfoValue.Active, .patientInfoValue.Yes{
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
+  background-color: #e5faf2;
+  color: #3bb077;
+}
+.patientInfoValue.Closed, .patientInfoValue.No{
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff0f1;
+  color: #d95087;
+
+}
