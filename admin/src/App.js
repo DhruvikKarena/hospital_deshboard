@@ -8,6 +8,7 @@ import PatientList from "./pages/patientList/PatientList";
 import Patient from "./pages/patient/Patient"
 import NewPatient from "./pages/NewPatient/NewPatient";
 import Doctor from "./pages/doctor/Doctor";
+import HospitalInfo from "./pages/hospitalInfo/HospitalInfo";
 // import User from "./pages/user/User";
 //import NewUser from "./pages/newUser/NewUser";
 //import ProductList from "./pages/productList/ProductList";
@@ -26,7 +27,7 @@ function App() {
     <Router>
       <Switch>
       <Route path="/login">
-      {user ? <Redirect to="/" /> : <Login />}    
+      {user !== null ? <Redirect to="/" /> : <Login />}    
       </Route>
       {user &&
       <> 
@@ -34,7 +35,7 @@ function App() {
       <div className="container">
       <Sidebar />
           <Route exact path="/">
-            <Home />
+            {user !== null ? <Home /> : <Redirect to="/login" />}
           </Route>
           <Route path="/doctors">
             <DoctorList />
@@ -53,6 +54,9 @@ function App() {
           </Route>
           <Route path="/newPatient">
             <NewPatient />
+          </Route>
+          <Route path="/hospitalInfo">
+            <HospitalInfo />
           </Route>
           {/* <Route path="/user/:userId">
             <User />

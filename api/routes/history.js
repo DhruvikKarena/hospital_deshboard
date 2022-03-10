@@ -102,7 +102,8 @@ router.put("/:id", verify, async (req, res) => {
             isActive: req.body.isActive,
             isAdmitted: req.body.isAdmitted,
             isOperationNeeded: req.body.isOperationNeeded},
-          $push: {medicines: req.body.medicines},
+          $push: {medicines: req.body.medicines,
+            photos_of_reports: req.body.photos_of_reports},
         },
         { new: true }
       );

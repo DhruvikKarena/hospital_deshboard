@@ -53,10 +53,12 @@ export default function Sidebar() {
                 Patients
               </li>
             </Link>
+            <Link to="/hospitalInfo" className="link">
             <li className="sidebarListItem">
               <AttachMoney className="sidebarIcon" />
-              Transactions
+              Hospital Info
             </li>
+            </Link>
             <li className="sidebarListItem">
               <BarChart className="sidebarIcon" />
               Reports

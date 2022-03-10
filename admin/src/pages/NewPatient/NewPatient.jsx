@@ -34,7 +34,8 @@ export default function NewPatient() {
 // }, JSON.parse(localStorage.getItem("user")).vacant_bed);
 
   const [img, setImg] = useState(null);
-  const [uploaded, setUploaded] = useState(0);
+  const [toggle, setToggle] = useState(false);
+  //const [uploaded, setUploaded] = useState(0);
 
   const {dispatch} = useContext(PatientContext);
 
@@ -76,7 +77,8 @@ export default function NewPatient() {
             setPatient((prev) => {
               return { ...prev, [item.label]: url };
             });
-            setUploaded((prev) => prev + 1);
+            //setUploaded((prev) => prev + 1);
+            handleToggle();
           });
         }
       );
@@ -89,8 +91,14 @@ export default function NewPatient() {
     upload([
       { file: img, label: "photos_of_reports" },
     ]);
+    //handleToggle();
   };
 
+  const handleToggle = (e) => {
+    //e.preventDefault();
+    setToggle(!toggle);
+    console.log(toggle);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -166,10 +174,16 @@ export default function NewPatient() {
         </div>
         <div className="addPatientItem">
           <label>Photos Of Reports</label>
+          <input className="react-switch-checkbox" id={`react-switch-new`} type="checkbox" checked={toggle} onChange={handleToggle} />
+            <label style={{ background: toggle && '#06D6A0' }} className="react-switch-label" htmlFor={`react-switch-new`} >
+              <span className={`react-switch-button`} />
+            </label>
           <input type="file" id="file" name="photos_of_reports" onChange={(e) => setImg(e.target.files[0])}/>
         </div>
-        {uploaded === 1 ? (<button className="addPatientButton" onClick={handleSubmit}>Create</button>):
-        (<button className="addPatientButton" onClick={handleUpload}>Upload</button>)}
+        {toggle ? (<button className="addPatientButton" onClick={handleUpload} >Upload</button>) :
+         (<button className="addPatientButton" onClick={handleSubmit}>Create</button>) }
+        {/* {uploaded === 1 ? (<button className="addPatientButton" onClick={handleSubmit}>Create</button>):
+        (<button className="addPatientButton" onClick={handleUpload}>Upload</button>)} */}
       </form>
     </div>
   );

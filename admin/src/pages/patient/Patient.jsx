@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
 import "./patient.css";
 import { useContext, useState } from "react";
+import storage from "../../firebase";
 //import axios from "axios";
 //import Chart from "../../components/chart/Chart"
 //import {patientData} from "../../dummyData"
-import { Publish } from "@material-ui/icons";
+// import { Publish } from "@material-ui/icons";
 import { updatePatient } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
 
@@ -40,10 +41,52 @@ export default function Patient() {
         vacant_beds: JSON.parse(localStorage.getItem("user")).vacant_bed});
 
     const {dispatch} = useContext(PatientContext);
-
+    const [img, setImg] = useState(null);
+    const [toggle, setToggle] = useState(false);
     // useEffect(() => {
     //     setUpdate_Patient(update_patient => ({ ...update_patient, }));
     // }, patient._id);
+
+    const handleToggle = (e) => {
+        //e.preventDefault();
+        setToggle(!toggle);
+        console.log(toggle);
+      }
+
+      const upload = (items) => {
+        items.forEach((item) => {
+          const fileName = new Date().getTime() + item.label + item.file.name;
+          const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "% done");
+            },
+            (error) => {
+              console.log(error);
+            },
+            () => {
+              uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+                setUpdate_Patient((prev) => {
+                  return { ...prev, [item.label]: url };
+                });
+                //setUploaded((prev) => prev + 1);
+                handleToggle();
+              });
+            }
+          );
+        });
+      };
+
+    
+    const handleUpload = (e) => {
+        e.preventDefault();
+        upload([
+        { file: img, label: "photos_of_reports" },
+        ]);
+    };
 
     const Button = ({ type }) => {
         return <button className={"patientInfoValue " + type}>{type}</button>;
@@ -124,15 +167,21 @@ export default function Patient() {
                   </div>
                   <div className="patientInfoItem">
                       <span className="patientInfoKey" id="isActive" >Active:</span>
-                      {patient.isActive ? <Button type="Active" /> : <Button type="Closed" /> }
+                      {patient.isActive ? <Button className="patientInfoValue" type="Active" /> : <Button className="patientInfoValue" type="Closed" /> }
                   </div>
                   <div className="patientInfoItem">
                       <span className="patientInfoKey" id="isAdmitted" >Admitted:</span>
-                      {patient.isAdmitted ? <Button type="Yes" /> : <Button type="No" /> }
+                      {patient.isAdmitted ? <Button className="patientInfoValue" type="Yes" /> : <Button className="patientInfoValue" type="No" /> }
                   </div>
                   <div className="patientInfoItem">
                       <span className="patientInfoKey" id="isOperationNeeded" >Operation Needed:</span>
-                      {patient.isOperationNeeded ? <Button type="Yes" /> : <Button type="No" /> }
+                      {patient.isOperationNeeded ? <Button className="patientInfoValue" type="Yes" /> : <Button className="patientInfoValue" type="No" /> }
+                  </div>
+                  <div className="patientInfoItem">
+                    <span className="patientInfoKey" id="photos_of_reports">Photos Of Reports:</span>
+                  </div>
+                  <div className="patientReports">
+                  {patient.photos_of_reports.map((photos_of_report) =>(<img key={photos_of_report} src={photos_of_report} alt="" className="patientUploadImg" />))}
                   </div>
               </div>
           </div>
@@ -167,17 +216,22 @@ export default function Patient() {
                         <option value="false">No</option>
                     </select>
                   <label>Photos of Reports</label>
-                  <input type="file" />
+                  <input className="react-switch-checkbox" id={`react-switch-new`} type="checkbox" checked={toggle} onChange={handleToggle} />
+                    <label style={{ background: toggle && '#06D6A0' }} className="react-switch-label" htmlFor={`react-switch-new`} >
+                        <span className={`react-switch-button`} />
+                    </label>
+                  <input type="file" id="file" name="photos_of_reports" onChange={(e) => setImg(e.target.files[0])}/>
               </div>
               <div className="patientFormRight">
                   <div className="patientUpload">
-                      <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="patientUploadImg" />
+                      {/* <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="patientUploadImg" />
                       <label type="file">
                           <Publish/>
-                      </label>
+                      </label> */}
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>
-                  <button className="patientButton" onClick={handleUpdate}>Update</button>
+                  {toggle ? (<button className="patientButton" onClick={handleUpload} >Upload</button>) :
+                    (<button className="patientButton" onClick={handleUpdate}>Update</button>) }
               </div>
           </form>
       </div>
