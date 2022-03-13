@@ -26,16 +26,16 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route path="/login">
-      {user !== null ? <Redirect to="/" /> : <Login />}    
+      <Route exact path="/">
+      {user === null ? <Login /> : <Redirect to="/home" /> }    
       </Route>
       {user &&
       <> 
       <Topbar />
       <div className="container">
       <Sidebar />
-          <Route exact path="/">
-            {user !== null ? <Home /> : <Redirect to="/login" />}
+          <Route exact path="/home">
+            <Home /> 
           </Route>
           <Route path="/doctors">
             <DoctorList />
