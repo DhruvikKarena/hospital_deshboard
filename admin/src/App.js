@@ -27,9 +27,9 @@ function App() {
     <Router>
       <Switch>
       <Route exact path="/">
-      {user === null ? <Login /> : <Redirect to="/home" /> }    
+      { user === null  ? <Login /> : <Redirect to="/home" /> }    
       </Route>
-      {user &&
+      {user && 
       <> 
       <Topbar />
       <div className="container">

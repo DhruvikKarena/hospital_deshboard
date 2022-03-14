@@ -45,6 +45,7 @@ router.post("/registerdoctor", async (req, res) => {
 
 //REGISTER FOR HOSPITAL
 router.post("/registerHospital", async (req, res) => {
+  //console.log(req.body);
   const newHospital = new Hospital({
     hospitalname: req.body.hospitalname,
     email: req.body.email,
@@ -52,9 +53,9 @@ router.post("/registerHospital", async (req, res) => {
       req.body.password,
       process.env.SECRET_KEY
     ).toString(),  
-    phone_number: req.body.phone_number,
-    total_bed: req.body.total_bed,
-    vacant_bed: req.body.vacant_bed,     
+    phone_number: parseInt(req.body.phone_number),
+    total_bed: parseInt(req.body.total_bed),
+    vacant_bed: parseInt(req.body.vacant_bed),     
   });
   try {
     const hospital = await newHospital.save();
