@@ -4,14 +4,17 @@ import App from './App';
 import { AuthContextProvider } from './context/authContext/AuthContext';
 import { DoctorContextProvider } from './context/doctorContext/DoctorContext';
 import { PatientContextProvider } from './context/patientContext/PatientContext';
+import { HospitalContextProvider } from './context/hospitalContext/HospitalContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
       <DoctorContextProvider>
-        <PatientContextProvider>
-          <App />
-        </PatientContextProvider>
+        <HospitalContextProvider>
+          <PatientContextProvider>
+            <App />
+          </PatientContextProvider>
+        </HospitalContextProvider>
       </DoctorContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,

@@ -36,13 +36,13 @@ const PatientReducer = (state, action) => {
           isFetching: false,
           error: true,
         };
-      case "UPLOAD_PATIENT_START":
+      case "UPDATE_PATIENT_START":
         return {
           ...state,
           isFetching: true,
           error: false,
         };
-      case "UPLOAD_PATIENT_SUCCESS":
+      case "UPDATE_PATIENT_SUCCESS":
         return {
           Patients: state.Patients.map(
             (Patient) => Patient._id === action.payload._id && action.payload
@@ -50,7 +50,7 @@ const PatientReducer = (state, action) => {
           isFetching: false,
           error: false,
         };
-      case "UPLOAD_PATIENT_FAILURE":
+      case "UPDATE_PATIENT_FAILURE":
         return {
           ...state,
           isFetching: false,

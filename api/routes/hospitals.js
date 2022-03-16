@@ -21,7 +21,10 @@ router.put("/:id", verify, async (req, res) => {
         const updatedHospital = await Hospital.findByIdAndUpdate(
           req.params.id,
           {
-            $set: req.body,
+            $set: {profilePic: req.body.profilePic,
+            email: req.body.email,
+            phone_number: req.body.phone_number,
+            address: req.body.address}
           },
           { new: true }
         );

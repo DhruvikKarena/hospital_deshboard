@@ -42,7 +42,7 @@ export default function Topbar() {
           <div className="topbarIconContainer">
             <Settings />
           </div>
-          <img src="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg" alt="" className="topAvatar" />
+          <img src={JSON.parse(localStorage.getItem("user")).profilePic || "https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg"} alt="" className="topAvatar" />
         </div>
       </div>
     </div>
