@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import {  loginHospital } from "../../context/authContext/apiCalls";
+import {  loginDoctor, loginHospital, loginPatient, registerDoctor, registerPatient } from "../../context/authContext/apiCalls";
 import { registerHospital } from "../../context/authContext/apiCalls";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import "./login.css";
@@ -11,13 +11,34 @@ export default function Login() {
   const [radioButton, setRadioButton] = useState("");
   const [signup, setSignup] = useState(false);
   const { isFetching, dispatch } = useContext(AuthContext);
+  const toggle = "container_login right-panel-active";
+
+  const LocalStorage = () => {
+    localStorage.setItem("hospital", "false");
+    localStorage.setItem("doctor", "false");
+    localStorage.setItem("patient", "false");
+  };
 
   const handleLogin = (e) => {
+    LocalStorage();
     if(radioButton === "hospital"){
       e.preventDefault();
       //console.log(radioButton + email);
       loginHospital({ email, password }, dispatch);
     }
+
+    else if(radioButton === "doctor"){
+      e.preventDefault();
+      console.log(radioButton + email);
+      loginDoctor({ email, password }, dispatch);
+    }
+
+    else if(radioButton === "patient"){
+      e.preventDefault();
+      console.log(radioButton + email);
+      loginPatient({ email, password }, dispatch);
+    }
+
     else{
       e.preventDefault();
       console.log(radioButton)
@@ -31,8 +52,20 @@ export default function Login() {
 
   const handleSignup = (e) => {
     //e.preventDefault();
-    registerHospital(user, dispatch);
-    console.log(user);
+    if(radioButton === "hospital"){
+      registerHospital(user, dispatch);
+      console.log(user);
+    }
+
+    else if(radioButton === "doctor"){
+      registerDoctor(user, dispatch);
+      console.log(user);
+    }
+
+    else if(radioButton === "patient"){
+      registerPatient(user, dispatch);
+      console.log(user);
+    }
     //window.localStorage.setItem("user",null);
     setSignup(false);
   };
@@ -40,17 +73,17 @@ export default function Login() {
   const SwitchUsers = () => {
     switch(radioButton){
       case "patient" : return(<div id="user_show">
-                        <input className="loginInput" type="text" placeholder="User name" />
-                        <input className="loginInput" type="text" placeholder="Full Name" />
-                        <input className="loginInput" type="email" placeholder="Email" />
-                        <input className="loginInput" type="password" placeholder="Password" />
+                        <input className="loginInput" type="text" name="username" placeholder="User name" onChange={handleChange}/>
+                        <input className="loginInput" type="text" name="full_name" placeholder="Full Name" onChange={handleChange}/>
+                        <input className="loginInput" type="email" name="email" placeholder="Email" onChange={handleChange}/>
+                        <input className="loginInput" type="password" name="password" placeholder="Password" onChange={handleChange}/>
                       </div>);
 
       case "doctor" : return(<div id="doctor_show">
-                              <input className="loginInput" type="text" placeholder="User name" />
-                              <input className="loginInput" type="text" placeholder="Doctor Full Name" />
-                              <input className="loginInput" type="email" placeholder="Email" />
-                              <input className="loginInput" type="password" placeholder="Password" />
+                              <input className="loginInput" type="text" name="username" placeholder="User name" onChange={handleChange}/>
+                              <input className="loginInput" type="text" name="doctor_full_name" placeholder="Doctor Full Name" onChange={handleChange}/>
+                              <input className="loginInput" type="email" name="email" placeholder="Email" onChange={handleChange}/>
+                              <input className="loginInput" type="password" name="password" placeholder="Password" onChange={handleChange}/>
                             </div>);
       
       case "hospital" : return(<div id="hospital_show">
@@ -68,7 +101,7 @@ export default function Login() {
 
   return (
     <div className="login">
-      <div className={ signup ? "container_login "+"right-panel-active" : "container_login"} id="container_login">
+      <div className={ signup ? toggle : "container_login"} id="container_login">
           <div className="form-container sign-up-container">
             <form action="#" className="loginForm">
               <h1 className="tags">Create Account</h1>

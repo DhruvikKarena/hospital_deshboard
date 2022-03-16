@@ -9,16 +9,25 @@ import Patient from "./pages/patient/Patient"
 import NewPatient from "./pages/NewPatient/NewPatient";
 import Doctor from "./pages/doctor/Doctor";
 import HospitalInfo from "./pages/hospitalInfo/HospitalInfo";
-// import User from "./pages/user/User";
-//import NewUser from "./pages/newUser/NewUser";
-//import ProductList from "./pages/productList/ProductList";
-//import Product from "./pages/product/Product";
-//import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
 import { AuthContext } from "./context/authContext/AuthContext";
 import { PatientContext } from "./context/patientContext/PatientContext";
 import { useContext } from "react";
 import NewDoctor from "./pages/NewDoctor/NewDoctor";
+
+const HomePages = () => {
+  if(JSON.parse(localStorage.getItem("hospital"))){
+    return <Redirect to="/home" />;
+  }
+
+  else if(JSON.parse(localStorage.getItem("doctor"))){
+    return <Redirect to="/doctorpage" />;
+  }
+
+  else if(JSON.parse(localStorage.getItem("patient"))){
+    return <Redirect to="/patientpage" />;
+  }
+}
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -27,9 +36,9 @@ function App() {
     <Router>
       <Switch>
       <Route exact path="/">
-      { user === null  ? <Login /> : <Redirect to="/home" /> }    
+      { user === null  ? <Login /> : HomePages() }    
       </Route>
-      {user && 
+      {user && JSON.parse(localStorage.getItem("hospital")) &&
       <> 
       <Topbar />
       <div className="container">
@@ -58,23 +67,21 @@ function App() {
           <Route path="/hospitalInfo">
             <HospitalInfo />
           </Route>
-          {/* <Route path="/user/:userId">
-            <User />
-          </Route>
-          <Route path="/newUser">
-            <NewUser />
-          </Route>
-          <Route path="/products">
-            <ProductList />
-          </Route>
-          <Route path="/product/:productId">
-            <Product />
-          </Route>
-          <Route path="/newproduct">
-            <NewProduct />
-          </Route>      */}
       </div>
       </>}
+      {user &&
+        <Route path="/doctorpage">
+            <>
+            <div><h1>Doctor</h1></div>
+            </>
+        </Route>}
+      {user && 
+      <Route path="/patientpage">
+            <>
+            <div><h1>Patient</h1></div>
+            </>
+        </Route>
+      }
       </Switch>
     </Router>
   );
