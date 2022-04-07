@@ -12,3 +12,15 @@
     type: "UPDATE_HOSPITAL_FAILURE",
   });
   
+  export const getAllHospitalsStart = () => ({
+    type: "GET_ALL_HOSPITALS_START",
+  });
+  
+  export const getAllHospitalsSuccess = (hospitals) => ({
+    type: "GET_ALL_HOSPITALS_SUCCESS",
+    payload: hospitals,
+  });
+  
+  export const getAllHospitalsFailure = () => ({
+    type: "GET_ALL_HOSPITALS_FAILURE",
+  });

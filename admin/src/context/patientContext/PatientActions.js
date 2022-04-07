@@ -49,4 +49,17 @@ export const getPatientsStart = () => ({
   export const updatePatientFailure = () => ({
     type: "UPDATE_PATIENT_FAILURE",
   });
+
+  export const getPatientHistoryStart = () => ({
+    type: "GET_PATIENT_HISTORY_START",
+  });
+  
+  export const getPatientHistorySuccess = (patients) => ({
+    type: "GET_PATIENT_HISTORY_SUCCESS",
+    payload: patients,
+  });
+  
+  export const getPatientHistoryFailure = () => ({
+    type: "GET_PATIENT_HISTORY_FAILURE",
+  });
   

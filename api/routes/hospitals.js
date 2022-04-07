@@ -232,4 +232,19 @@ router.put("/deletedoctor/:id", verify, async (req, res) => {
   }
 });
 
+//GET ALL
+router.get("/allHospitals", verify, async (req, res) => {
+    try {
+      const hospitals = await Hospital.find();
+      const all_hospital = [];
+      for(i=0;i<hospitals.length;i++){
+        const { password,appointments,cancel_appointments, ...info } = hospitals[i]._doc;
+        all_hospital.push(info);
+      }
+      res.status(200).json(all_hospital);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
 module.exports = router;

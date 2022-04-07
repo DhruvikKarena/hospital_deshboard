@@ -12,6 +12,9 @@ import {
   updatePatientStart,
   updatePatientSuccess,
   updatePatientFailure,
+  getPatientHistoryStart,
+  getPatientHistorySuccess,
+  getPatientHistoryFailure,
 } from "./PatientActions";
 
 //get info
@@ -61,7 +64,7 @@ export const deletePatient = async (id, dispatch) => {
 
 //update
 export const updatePatient = async (patient, dispatch) => {
-  //console.log(patient);
+  console.log(patient);
   dispatch(updatePatientStart());
   try {
       await axios.put("/history/"+patient.id, patient, {
@@ -72,5 +75,21 @@ export const updatePatient = async (patient, dispatch) => {
     dispatch(updatePatientSuccess(patient));
   } catch (err) {
     dispatch(updatePatientFailure());
+  }
+};
+
+//get patients history
+
+export const getPatientHistory = async ( dispatch) => {
+  dispatch(getPatientHistoryStart());
+  try {
+    const res = await axios.get("/users/findhistory/"+JSON.parse(localStorage.getItem("user"))._id, {
+      headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
+    });
+    dispatch(getPatientHistorySuccess(res.data));
+  } catch (err) {
+    dispatch(getPatientHistoryFailure());
   }
 };

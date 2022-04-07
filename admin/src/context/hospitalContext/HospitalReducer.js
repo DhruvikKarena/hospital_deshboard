@@ -19,6 +19,25 @@ const HospitalReducer = (state, action) => {
           error: true,
         };
 
+      case "GET_ALL_HOSPITALS_START":
+        return {
+          hospitals: [],
+          isFetching: true,
+          error: false,
+        };
+      case "GET_ALL_HOSPITALS_SUCCESS":
+        return {
+          hospitals: action.payload,
+          isFetching: false,
+          error: false,
+        };
+      case "GET_ALL_HOSPITALS_FAILURE":
+        return {
+          hospitals: [],
+          isFetching: false,
+          error: true,
+        };
+
       default:
         return { ...state };
     }

@@ -1,0 +1,140 @@
+.navbar {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background: rgb(16, 131, 16);
+
+}
+  
+    .containerForPatient {
+      padding: 0px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;  
+      }
+
+      .hospitalInfoBeds {
+        margin-right: 20px;
+        cursor: pointer;
+      }
+      
+      .leftForPatient {
+        display: flex;
+        align-items: center;
+      }
+
+      .rightForPatient {
+        display: flex;
+        align-items: center;
+      }
+
+      .featuredForPatient {
+            height: 90vh;
+            position: relative;
+        }
+
+        .coverimg {
+            width: 100%;
+        height: 100%;
+        object-fit: cover;
+        
+    }
+
+    .hospitalListForPatient{
+        width: 100%;
+        height: 100%;
+        align-items: center;
+    }
+
+    .hospitalInfoForPatient{
+        margin: 10px;
+        border-radius: 10px;
+        padding: 0px 50px;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      border-style: solid;
+      height: 60px;
+    }
+
+    .hospitalPic{
+        width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+    }
+
+    .hospitalInfoItemForPatient{
+        display: flex;
+    }
+    
+    .hospitalInfoName{
+        margin-top: 10px;
+    }
+
+    .hospitalInfoName, .hospitalInfoBeds{
+        font-weight: 600;
+        font-size: large;
+    }
+
+    .hospitalInfoButtonForPatient{
+        background-color: green;
+    }
+
+    .hospitalInfoHidden{
+        display: grid;
+        border-style: solid;
+        border-radius: 10px;
+        grid-template-columns: auto auto auto auto;
+        margin: 10px;
+        padding: 0px 50px;
+        align-items: center;
+        height: 120px;
+        justify-content: space-between;
+        animation: fadeIn linear 2s;
+        -webkit-animation: fadeIn linear 2s;
+        -moz-animation: fadeIn linear 2s;
+        -o-animation: fadeIn linear 2s;
+        -ms-animation: fadeIn linear 2s;
+    }
+
+    @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      
+      @-moz-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      
+      @-webkit-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      
+      @-o-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      
+      @-ms-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+
+    .hospitalInfoItemHidden{
+        display: flex;
+    }
+
+    .hospitalInfoNameHidden{
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: large;
+    }
+

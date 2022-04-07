@@ -74,6 +74,24 @@ const PatientReducer = (state, action) => {
           isFetching: false,
           error: true,
         };
+      case "GET_PATIENT_HISTORY_START":
+        return {
+          patients: [],
+          isFetching: true,
+          error: false,
+        };
+      case "GET_PATIENT_HISTORY_SUCCESS":
+        return {
+          patients: action.payload,
+          isFetching: false,
+          error: false,
+        };
+      case "GET_PATIENT_HISTORY_FAILURE":
+        return {
+          patients: [],
+          isFetching: false,
+          error: true,
+        };
       default:
         return { ...state };
     }

@@ -1,0 +1,65 @@
+.userInfo{
+    margin-top: 100px;
+}
+
+.profile{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.profilePic{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    margin-left: 30px;
+}
+
+.profileName{
+    margin-top: 30px;
+}
+
+.profileinfo{
+    border-radius: 20px;
+    border-style: solid;
+    border-color: green;
+    margin: 20px;
+    align-content: center;
+}
+
+.profileGrid{
+    margin: 10px 10px;
+}
+
+.profileinfoItem{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.medicalHistory{
+    font-weight: 600;
+    font-size: 35px;
+    color: black;
+    margin-left: 20px;
+}
+
+.historyList{
+    border-radius: 20px;
+    border-style: solid;
+    border-color: green;
+    margin: 20px;
+    align-content: center;
+}
+
+.historyDetail{
+    margin: 10px 10px;
+}
+
+.historyImg{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    margin-left: 30px;
+}

@@ -14,6 +14,8 @@ import { AuthContext } from "./context/authContext/AuthContext";
 import { PatientContext } from "./context/patientContext/PatientContext";
 import { useContext } from "react";
 import NewDoctor from "./pages/NewDoctor/NewDoctor";
+import UserHome from "./pages/userHome/UserHome";
+import UserHistory from "./pages/userHistory/UserHistory";
 
 const HomePages = () => {
   if(JSON.parse(localStorage.getItem("hospital"))){
@@ -76,11 +78,14 @@ function App() {
             </>
         </Route>}
       {user && 
+      <>      
       <Route path="/patientpage">
-            <>
-            <div><h1>Patient</h1></div>
-            </>
-        </Route>
+        <UserHome />
+      </Route>
+      <Route path={"/userhistory"}>
+        <UserHistory />
+      </Route>
+      </>
       }
       </Switch>
     </Router>

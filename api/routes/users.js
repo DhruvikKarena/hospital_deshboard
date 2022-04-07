@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/Users");
 const CryptoJS = require("crypto-js");
 const verify = require("../verifyToken");
+const History = require("../models/History");
 
 //UPDATE
 
@@ -56,6 +57,36 @@ router.get("/find/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+//GET All history of 1 patient
+
+router.get("/findhistory/:id", verify, async (req, res) => {
+  //  console.log("body= ",req.body);
+  // console.log("p= ",req.params.id);
+  if(req.user.id === req.params.id){
+    try {
+      const user = await User.findById(req.params.id);
+      let patient_history = [];
+      const history_info = user.medical_history; 
+      const len = user.medical_history.length;
+      for(i=0;i<len;i++){
+        const temp = await History.findById(history_info[i]);
+        if(temp != null){
+          patient_history.push(temp);
+        }
+        else{
+          continue;
+        }
+      }
+      res.status(200).json(patient_history);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+  else{
+    res.status(403).json("You are not allowed!");
+  }  
 });
 
 //GET ALL
