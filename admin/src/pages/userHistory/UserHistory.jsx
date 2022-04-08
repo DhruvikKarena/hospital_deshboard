@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-// import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import './userHistory.css';
+import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
 import { useContext, useEffect } from "react";
 import { getPatientHistory } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
+import Navbar from "../../components/navbar/Navbar";
 
 export default function UserHistory() {
 
@@ -19,6 +19,11 @@ export default function UserHistory() {
         color: 'black',    
       }));
 
+    //   const AvatarL = styled(BackgroundLetterAvatar)(({ theme }) => ({
+    //     width: 100,
+    //     height: 100,   
+    //   }));
+
     const { patients, dispatch } = useContext(PatientContext);
     // const [histories, setHistories] = useState([]);
 
@@ -28,22 +33,12 @@ export default function UserHistory() {
 
     return (
         <>
-        <div className= "navbar">
-        <div className="container">
-          <div className="left">
-          <Link to="/patientpage" className="link"><span>Home</span></Link>
-          </div>
-          <div className="right">
-            <Link to={"/userhistory"} className="link"><span>History</span></Link>
-            <span>Logout</span>
-          </div>
-        </div>
-        </div>
-
+        <Navbar />
         <div className="userInfo">
         <div className="profile">
-            <img className="profilePic" src="https://thumbs.dreamstime.com/b/hospital-building-modern-parking-lot-59693686.jpg" alt=""/>
-            <h1 className="profileName">Devid</h1>
+        {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="profilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
+        <div className='imgavt'><BackgroundLetterAvatar {...getname(JSON.parse(localStorage.getItem("user")).full_name)} /></div>}
+            <h1 className="profileName">{JSON.parse(localStorage.getItem("user")).full_name}</h1>
         </div>
         <div className="profileinfo">
             <div className="profileGrid">

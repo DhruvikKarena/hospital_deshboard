@@ -2,6 +2,7 @@ import React from "react";
 import "./topbar.css";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
+import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
 import { NotificationsNone, Language, Settings } from "@material-ui/icons";
 
 export default function Topbar() {
@@ -42,7 +43,10 @@ export default function Topbar() {
           <div className="topbarIconContainer">
             <Settings />
           </div>
-          <img src={JSON.parse(localStorage.getItem("user")).profilePic || "https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg"} alt="" className="topAvatar" />
+          <div className="topAvatar">
+                    {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="topAvatar" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
+                <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(JSON.parse(localStorage.getItem("user")).hospitalname)}/></div>}
+                </div>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { PatientContext } from "../../context/patientContext/PatientContext";
 import { deletePatient, getPatients } from "../../context/patientContext/apiCalls";
+import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
 
 export default function PatientList() {
   //const [data, setData] = useState(PatientRows);
@@ -33,10 +34,13 @@ export default function PatientList() {
       width: 200,
       renderCell: (params) => {
         return (
+          <>
           <div className="patientListItem">
-            <img className="patientListImg" src={params.row.img || "https://i.guim.co.uk/img/media/d31ebd49b32a5aa609a584ababb1e03bc70b4942/573_213_2929_1758/master/2929.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=5b27f1f7a463408ae8fffac0bbda95a5"} alt="" />
-            {params.row.patient_name}
+            {params.row.profilePic !== undefined ? <img className="doctorListImg" src={params.row.profilePic} alt=""/> :
+            <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(params.row.patient_name)}/></div>}
           </div>
+          <div className="patientListItem">{params.row.patient_name}</div>
+          </>
         );
       },
     },

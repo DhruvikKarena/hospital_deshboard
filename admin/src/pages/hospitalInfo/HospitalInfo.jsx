@@ -3,6 +3,7 @@ import "./hospitalInfo.css";
 import storage from "../../firebase";
 import { HospitalContext } from "../../context/hospitalContext/HospitalContext";
 import { updateHospital } from "../../context/hospitalContext/apiCalls";
+import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
 
 export default function HospitalInfo() {
 
@@ -84,7 +85,10 @@ export default function HospitalInfo() {
       <div className="hospitalInfoTop">
           <div className="hospitalInfoTopRight">
               <div className="hospitalInfoInfoTop">
-                  <img src={hospitalInfo.profilePic || "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"} alt="" className="hospitalInfoInfoImg" />
+                  <div className="hospitalInfoInfoImg">
+                    {hospitalInfo.profilePic !== undefined ? <img className="hospitalInfoInfoImg" src={hospitalInfo.profilePic} alt=""/> :
+                    <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(hospitalInfo.hospitalname)}/></div>}
+                  </div>
                   <span className="hospitalInfoName">{hospitalInfo.hospitalname}</span>
               </div>
               <div className="hospitalInfoInfoBottom">

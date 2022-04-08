@@ -1,0 +1,33 @@
+.navbar {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background: rgb(16, 131, 16);
+
+}
+
+.containerForPatient {
+    padding: 0px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;  
+}
+
+.leftForPatient {
+    display: flex;
+    align-items: center;
+  }
+
+  .rightForPatient {
+    display: flex;
+    align-items: center;
+  }
+
+  .pagelinks{
+    justify-content: space-between;
+    margin: 0px 20px;
+  }

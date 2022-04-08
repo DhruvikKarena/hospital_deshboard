@@ -25,6 +25,10 @@
     margin-right: 20px;
 }
 
+.avtimgdoc{
+  margin-right: 10px;
+}
+
 .patientListDelete{
     color: red;
     cursor: pointer;

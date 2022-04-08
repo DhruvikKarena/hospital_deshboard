@@ -2,6 +2,7 @@ import "./doctorList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 //import { doctorRows } from "../../dummyData";
+import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { DoctorContext } from "../../context/doctorContext/DoctorContext";
@@ -35,10 +36,13 @@ export default function DoctorList() {
       width: 200,
       renderCell: (params) => {
         return (
+          <>
           <div className="doctorListItem">
-            <img className="doctorListImg" src={params.row.profilePic || "https://i.guim.co.uk/img/media/d31ebd49b32a5aa609a584ababb1e03bc70b4942/573_213_2929_1758/master/2929.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=5b27f1f7a463408ae8fffac0bbda95a5"} alt="" />
-            {params.row.username}
+            {params.row.profilePic !== undefined ? <img className="doctorListImg" src={params.row.profilePic} alt=""/> :
+            <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(params.row.username)}/></div>}
           </div>
+          <div className="doctorListItem">{params.row.username}</div>
+          </>
         );
       },
     },

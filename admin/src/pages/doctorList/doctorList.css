@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.doctorListItem{
+  margin-right: 10px;
+}
+
 .doctorListImg {
   width: 32px;
   height: 32px;
@@ -14,6 +18,10 @@
   object-fit: cover;
   margin-right: 10px;
 }
+
+/* .avtimgdoc{
+  margin-top: 20px;
+} */
 
 .doctorListEdit{
     border: none;

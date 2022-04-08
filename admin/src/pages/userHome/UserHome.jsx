@@ -1,8 +1,9 @@
 import "./userHome.css";
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { HospitalContext } from "../../context/hospitalContext/HospitalContext";
 import { getAllHospitals } from "../../context/hospitalContext/apiCalls";
+import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import Navbar from "../../components/navbar/Navbar";
 
 export default function UserHome() {
 
@@ -20,25 +21,7 @@ export default function UserHome() {
 
     return (
         <>
-        <div className= "navbar">
-            {/* {console.log(hospitals)} */}
-        <div className="containerForPatient">
-          <div className="leftForPatient">
-          <Link to="/patientpage" className="link"><span>Home</span></Link>
-          </div>
-          <div className="right">
-            {/* <Search className="icon" />
-            <span>KID</span>
-            <Notifications className="icon" />
-            <img
-              src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
-            /> */}
-            <Link to={"/userhistory"} className="link"><span>History</span></Link>
-            <span>Logout</span>
-          </div>
-        </div>
-      </div>
+        <Navbar />
       <div className="featuredForPatient">
       <img className="coverimg"
         src="https://thumbs.dreamstime.com/b/hospital-building-modern-parking-lot-59693686.jpg"
@@ -105,8 +88,8 @@ export default function UserHome() {
     {hospitals.map((hospital) => 
     <div key={hospital._id} className="hospitalInfoForPatient">
     <div className="hospitalInfoItemForPatient">
-        {hospital.profilePic !== "" ? <img className="hospitalPic" src={hospital.profilePic} alt=""/> :
-        <img className="hospitalPic" src="https://image.shutterstock.com/image-photo/modern-hospital-style-building-260nw-212251981.jpg" alt="h"/>}
+        {hospital.profilePic !== undefined ? <img className="hospitalPic" src={hospital.profilePic} alt=""/> :
+        <div className="hospitalPic"><BackgroundLetterAvatar {...getname(hospital.hospitalname)}/></div>}
         <span className="hospitalInfoName">{hospital.hospitalname}</span>
     </div>
 

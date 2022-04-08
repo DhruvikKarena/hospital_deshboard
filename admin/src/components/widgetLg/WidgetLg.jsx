@@ -1,6 +1,7 @@
 import "./widgetLg.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
 
 export default function WidgetLg() {
   const [latestPaitents, setLatestPaitents] = useState([]);
@@ -39,11 +40,10 @@ export default function WidgetLg() {
         {latestPaitents.map((latestPaitents) => ( 
         <tr  key={latestPaitents._id} className="widgetLgTr">
           <td className="widgetLgUser">
-            <img
-              src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt=""
-              className="widgetLgImg"
-            />
+            <div className="widgetLgImg">
+                    {latestPaitents.profilePic !== undefined ? <img className="widgetLgImg" src={latestPaitents.profilePic} alt=""/> :
+                <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(latestPaitents.patient_name)}/></div>}
+                </div>
             <span className="widgetLgName">{latestPaitents.patient_name}</span>
           </td>
           <td className="widgetLgDate">{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(latestPaitents.createdAt)))}</td>

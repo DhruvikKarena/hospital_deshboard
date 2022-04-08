@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import "./doctor.css";
+import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
 //import Chart from "../../components/chart/Chart"
 //import {doctorData} from "../../dummyData"
 //import { Publish } from "@material-ui/icons";
@@ -15,8 +16,11 @@ export default function Doctor() {
       <div className="doctorTop">
           <div className="doctorTopRight">
               <div className="doctorInfoTop">
-                  <img src={"https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"} alt="" className="doctorInfoImg" />
-                  <span className="doctorName">{doctor.doctor_name}</span>
+                <div className="doctorInfoImg">
+                    {doctor.profilePic !== undefined ? <img className="doctorListImg" src={doctor.profilePic} alt=""/> :
+                <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(doctor.doctor_full_name)}/></div>}
+                </div>
+                  <span className="doctorName">{doctor.doctor_full_name}</span>
               </div>
               <div className="doctorInfoBottom">
                   <div className="doctorInfoItem">

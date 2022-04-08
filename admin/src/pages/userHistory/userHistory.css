@@ -16,9 +16,14 @@
     margin-left: 30px;
 }
 
-.profileName{
-    margin-top: 30px;
+.imgavt{
+    margin-right: 20px;
+    margin-left: 30px;
 }
+
+/* .profileName{
+    margin-top: 30px;
+} */
 
 .profileinfo{
     border-radius: 20px;
