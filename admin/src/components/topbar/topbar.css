@@ -55,3 +55,20 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+.logoutbtn{
+  width: 65px;
+  border: none;
+  padding: 5px;
+  background-color: rgb(227, 70, 70);
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-left: 10px;
+}
+
+.logoutbtn:hover{
+  background-color: red;
+}

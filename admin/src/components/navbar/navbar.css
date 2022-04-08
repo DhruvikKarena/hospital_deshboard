@@ -30,4 +30,5 @@
   .pagelinks{
     justify-content: space-between;
     margin: 0px 20px;
+    cursor: pointer;
   }

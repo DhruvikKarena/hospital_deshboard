@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginFailure, loginStart, loginSuccess, registerStart, registerFailure } from "./AuthActions";
+import { loginFailure, loginStart, loginSuccess, registerStart, registerFailure, logout } from "./AuthActions";
 
 //for login into hospital
 export const loginHospital = async (user, dispatch) => {
@@ -72,3 +72,8 @@ export const loginPatient = async (user, dispatch) => {
     dispatch(loginFailure());
   }
 };
+
+export const logOut = async (dispatch) => {
+  dispatch(logout());
+  window.localStorage.clear();
+}

@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
+import { logOut } from "../../context/authContext/apiCalls";
+import { AuthContext } from "../../context/authContext/AuthContext";
+import { useContext } from "react";
 import "./navbar.css";
 
 export default function Navbar() {
+  const {dispatch} = useContext(AuthContext);
+
+  const handleLogout = (e) => {
+    logOut(dispatch);
+  }
 
     return (
         <div className= "navbar">
@@ -19,7 +27,7 @@ export default function Navbar() {
               alt=""
             /> */}
             <Link to={"/userhistory"} className="link"><span className="pagelinks">History</span></Link>
-            <span className="pagelinks">Logout</span>
+            <Link to={"/"} className="link"><span className="pagelinks" onClick={handleLogout}>Logout</span></Link>
           </div>
         </div>
         </div>

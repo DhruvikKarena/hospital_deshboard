@@ -1,11 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./topbar.css";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
 import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
+import { NotificationsNone, Settings } from "@material-ui/icons";
+import { logOut } from "../../context/authContext/apiCalls";
+import { AuthContext } from "../../context/authContext/AuthContext";
+import { useContext } from "react";
 
 export default function Topbar() {
+
+  const {dispatch} = useContext(AuthContext);
+
+  const handleLogout = (e) => {
+    logOut(dispatch);
+  }
+
   // const [hospital, setHospital] = useState([]);
 
   // useEffect(() => {
@@ -37,18 +48,17 @@ export default function Topbar() {
             <span className="topIconBadge">2</span>
           </div>
           <div className="topbarIconContainer">
-            <Language />
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
             <Settings />
           </div>
           <div className="topAvatar">
-                    {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="topAvatar" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
-                <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(JSON.parse(localStorage.getItem("user")).hospitalname)}/></div>}
-                </div>
+            {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="topAvatar" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
+            <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(JSON.parse(localStorage.getItem("user")).hospitalname)}/></div>}
+          </div>
+          <Link to={"/"} className="link" onClick={handleLogout}><div className="logoutbtn">Log Out</div></Link>
         </div>
       </div>
     </div>
   );
 }
+
+
