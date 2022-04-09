@@ -4,10 +4,13 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import './userHistory.css';
 import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getPatientHistory } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
 import Navbar from "../../components/navbar/Navbar";
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+// import { Link } from 'react-router-dom'; 
+import UserUpdate from '../userUpdate/UserUpdate';
 
 export default function UserHistory() {
 
@@ -19,13 +22,13 @@ export default function UserHistory() {
         color: 'black',    
       }));
 
-    //   const AvatarL = styled(BackgroundLetterAvatar)(({ theme }) => ({
-    //     width: 100,
-    //     height: 100,   
-    //   }));
 
     const { patients, dispatch } = useContext(PatientContext);
-    // const [histories, setHistories] = useState([]);
+    const [toggleedit, setToggleedit] = useState(false);
+
+    const handleToggleedit = (e) => {
+        setToggleedit(!toggleedit);
+    };
 
     useEffect(() => {
         getPatientHistory(dispatch);
@@ -39,6 +42,7 @@ export default function UserHistory() {
         {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="profilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
         <div className='imgavt'><BackgroundLetterAvatar {...getname(JSON.parse(localStorage.getItem("user")).full_name)} /></div>}
             <h1 className="profileName">{JSON.parse(localStorage.getItem("user")).full_name}</h1>
+        <ModeEditIcon sx={{ fontSize: 38 }} className='editbtn' onClick={handleToggleedit}/>
         </div>
         <div className="profileinfo">
             <div className="profileGrid">
@@ -57,27 +61,28 @@ export default function UserHistory() {
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Age: </span> 
-                <span className="profileinfoItem">23</span></Item>
+                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).age}</span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Blood Group: </span> 
-                <span className="profileinfoItem">B+</span></Item>
+                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).bloode_group}</span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Phone Number: </span> 
-                <span className="profileinfoItem">4567328897</span></Item>
+                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).phone_number}</span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Address: </span> 
-                <span className="profileinfoItem">laptoop</span></Item>
+                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).address}</span></Item>
                 </Grid>
             </Grid>
             </Box>
             </div>    
         </div>
+        {toggleedit ? <UserUpdate /> : <div></div>}
         <div className="medicalHistory">
             <span>Medical History</span>
         </div>

@@ -7,7 +7,8 @@ const History = require("../models/History");
 //UPDATE
 
 router.put("/:id", verify, async (req, res) => {
-    if (req.user.id === req.params.id || req.user.isDoctor) {
+  // console.log(req.body);
+    if (req.user.id === req.params.id ) {
       if (req.body.password) {
         req.body.password = CryptoJS.AES.encrypt(
           req.body.password,
@@ -19,7 +20,13 @@ router.put("/:id", verify, async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(
           req.params.id,
           {
-            $set: req.body,
+            $set: {profilePic: req.body.profilePic,
+              email: req.body.email,
+              phone_number: req.body.phone_number,
+              address: req.body.address,
+              full_name: req.body.full_name,
+              bloode_group: req.body.bloode_group,
+              age: req.body.age},
           },
           { new: true }
         );
