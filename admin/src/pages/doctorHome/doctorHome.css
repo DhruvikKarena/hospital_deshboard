@@ -1,0 +1,46 @@
+.doctorInfo{
+    margin-top: 100px;
+}
+
+.doctorprofile{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.doctorprofilePic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    margin-left: 30px;
+}
+
+.doctorimgavt{
+    margin-right: 20px;
+    margin-left: 30px;
+}
+
+
+
+.doctoreditbtn{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.doctorprofileinfo{
+    border-radius: 20px;
+    border-style: solid;
+    border-color: green;
+    margin: 20px;
+    align-content: center;
+}
+
+.doctorprofileGrid{
+    margin: 10px 10px;
+}
+
+.doctorprofileinfoItem{
+    font-weight: 600;
+    font-size: 20px;
+}

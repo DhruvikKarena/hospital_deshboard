@@ -36,3 +36,17 @@ export const getDoctorsStart = () => ({
   export const deleteDoctorFailure = () => ({
     type: "DELETE_DOCTOR_FAILURE",
   });
+
+  
+  export const updateDoctorStart = () => ({
+    type: "UPDATE_DOCTOR_START",
+  });
+  
+  export const updateDoctorSuccess = (doctor) => ({
+    type: "UPDATE_DOCTOR_SUCCESS",
+    payload: doctor,
+  });
+  
+  export const updateDoctorFailure = () => ({
+    type: "UPDATE_DOCTOR_FAILURE",
+  });

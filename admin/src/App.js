@@ -16,6 +16,7 @@ import { useContext } from "react";
 import NewDoctor from "./pages/NewDoctor/NewDoctor";
 import UserHome from "./pages/userHome/UserHome";
 import UserHistory from "./pages/userHistory/UserHistory";
+import DoctorHome from "./pages/doctorHome/DoctorHome";
 
 const HomePages = () => {
   if(JSON.parse(localStorage.getItem("hospital"))){
@@ -23,7 +24,7 @@ const HomePages = () => {
   }
 
   else if(JSON.parse(localStorage.getItem("doctor"))){
-    return <Redirect to="/doctorpage" />;
+    return <Redirect to="/doctorhome" />;
   }
 
   else if(JSON.parse(localStorage.getItem("patient"))){
@@ -71,13 +72,13 @@ function App() {
           </Route>
       </div>
       </>}
-      {user &&
-        <Route path="/doctorpage">
-            <>
-            <div><h1>Doctor</h1></div>
-            </>
-        </Route>}
-      {user && 
+      {user && JSON.parse(localStorage.getItem("doctor")) &&
+        <>
+        <Route path="/doctorhome">
+            <DoctorHome/>
+        </Route>
+        </>}
+      {user && JSON.parse(localStorage.getItem("patient")) &&
       <>      
       <Route path="/patientpage">
         <UserHome />

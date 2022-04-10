@@ -9,6 +9,9 @@ import {
   getDoctorsFailure,
   getDoctorsStart,
   getDoctorsSuccess,
+  updateDoctorStart,
+  updateDoctorSuccess,
+  updateDoctorFailure,
 } from "./DoctorActions";
 
 export const getDoctors = async (dispatch) => {
@@ -52,5 +55,21 @@ export const deleteDoctor = async (doctor, dispatch) => {
     dispatch(deleteDoctorSuccess(doctor.doctors_id));
   } catch (err) {
     dispatch(deleteDoctorFailure());
+  }
+};
+
+//update
+export const updateDoctor = async (doctor, dispatch) => {
+  // console.log(user);
+  dispatch(updateDoctorStart());
+  try {
+      await axios.put("/doctor/"+doctor.id, doctor, {
+      headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
+    });
+    dispatch(updateDoctorSuccess(doctor));
+  } catch (err) {
+    dispatch(updateDoctorFailure());
   }
 };

@@ -1,0 +1,81 @@
+.doctoreditInfo{
+    font-weight: 600;
+    font-size: 35px;
+    color: black;
+    margin-left: 20px;
+}
+
+.doctorprofileinfo{
+    border-radius: 20px;
+    border-style: solid;
+    border-color: green;
+    margin: 20px;
+    align-content: center;
+}
+
+.doctorprofileedit{
+    margin: 10px 10px;
+}
+
+.doctorprofileInput{
+    border: none;
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+
+.doctorprofileLable{
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.doctordivItem{
+    width: 392px;
+    height: 70px;
+    text-align: center;
+    color: black,
+}
+
+.doctordivItemtext{
+    padding: 8px 8px;
+    margin-left: 50px;
+}
+
+.doctorp-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    margin-left: 90px;
+    margin-bottom: 8px;
+}
+
+.react-switch-checkbox{
+    margin-left: 10px;
+}
+
+
+.doctorprofilebtnUpdate{
+    background-color: green;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.doctorprofilebtnUpload{
+    background-color: rgb(21, 176, 21);
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.doctoruploadfield{
+    display: flex;
+    flex-direction: row;
+}

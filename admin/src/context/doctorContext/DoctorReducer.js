@@ -74,6 +74,24 @@ const DoctorReducer = (state, action) => {
           isFetching: false,
           error: true,
         };
+      case "UPDATE_DOCTOR_START":
+        return {
+          ...state,
+          isFetching: true,
+          error: false,
+        };
+      case "UPDATE_DOCTOR_SUCCESS":
+        return {
+          doctors: state.doctor,
+          isFetching: false,
+          error: false,
+        };
+      case "UPDATE_DOCTOR_FAILURE":
+        return {
+          ...state,
+          isFetching: false,
+          error: true,
+        };
       default:
         return { ...state };
     }
