@@ -30,6 +30,7 @@
 }
 
 .divItem{
+    margin-bottom: 10px;
     width: 392px;
     height: 70px;
     text-align: center;
@@ -72,4 +73,5 @@
     font-size: 18px;
     cursor: pointer;
     padding: 5px 10px;
+    margin-bottom: 5px;
 }

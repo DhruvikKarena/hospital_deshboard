@@ -7,6 +7,7 @@ import storage from "../../firebase";
 import Grid from '@mui/material/Grid';
 import './userUpdate.css';
 import { updateUser } from '../../context/userContext/apiCalls';
+import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
 
 export default function UserUpdate() {
 
@@ -22,10 +23,12 @@ export default function UserUpdate() {
     const {dispatch} = useContext(UserContext);
     const [img, setImg] = useState(null);
     const [toggle, setToggle] = useState(false);
+    const [progress, setProgress] = useState(0);
 
     const handleToggle = (e) => {
         //e.preventDefault();
         setToggle(!toggle);
+        setProgress(0);
       }
 
       const upload = (items) => {
@@ -37,7 +40,8 @@ export default function UserUpdate() {
             (snapshot) => {
               const progress =
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log("Upload is " + progress + "% done");
+                setProgress(progress);
+            //   console.log("Upload is " + progress + "% done");
             },
             (error) => {
               console.log(error);
@@ -156,6 +160,9 @@ export default function UserUpdate() {
                             <div className='divItemtext'>
                              {toggle ? (<button className="profilebtnUpload" onClick={handleUpload} >Upload</button>) :
                              (<button className="profilebtnUpdate" onClick={handleUpdate}>Update</button>) }
+                             <div className='patientProgress'>
+                             {toggle ? <CircularProgressWithLabel value={progress} /> : <></>}
+                             </div>
                             </div>
                             </div>
                         </Grid>

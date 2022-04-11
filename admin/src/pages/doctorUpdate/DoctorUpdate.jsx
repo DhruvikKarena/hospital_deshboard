@@ -7,6 +7,7 @@ import storage from "../../firebase";
 import Grid from '@mui/material/Grid';
 import './doctorUpdate.css';
 import { updateDoctor } from '../../context/doctorContext/apiCalls';
+import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
 
 export default function DoctorUpdate() {
 
@@ -15,10 +16,12 @@ export default function DoctorUpdate() {
     const [img, setImg] = useState(null);
     const [licenceimg, setLicenceimg] = useState(null);
     const [toggle, setToggle] = useState(false);
+    const [progress, setProgress] = useState(0);
 
     const handleToggle = (e) => {
         //e.preventDefault();
         setToggle(!toggle);
+        setProgress(0);
       }
 
       const upload = (items) => {
@@ -30,7 +33,8 @@ export default function DoctorUpdate() {
             (snapshot) => {
               const progress =
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log("Upload is " + progress + "% done");
+                setProgress(progress);
+            //   console.log("Upload is " + progress + "% done");
             },
             (error) => {
               console.log(error);
@@ -182,6 +186,9 @@ export default function DoctorUpdate() {
                             <div className='doctordivItemtext'>
                              {toggle ? (<button className="doctorprofilebtnUpload" onClick={handleUpload}>Upload</button>) :
                              (<button className="doctorprofilebtnUpdate" onClick={handleUpdate}>Update</button>) }
+                             <div className='doctorProgress'>
+                             {toggle ? <CircularProgressWithLabel value={progress} /> : <></>}
+                             </div>
                             </div>
                             </div>
                         </Grid>

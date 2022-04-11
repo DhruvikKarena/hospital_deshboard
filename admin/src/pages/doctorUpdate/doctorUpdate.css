@@ -73,9 +73,20 @@
     font-size: 18px;
     cursor: pointer;
     padding: 5px 10px;
+    margin-right: 20px;
 }
 
 .doctoruploadfield{
     display: flex;
     flex-direction: row;
+}
+
+.doctordivbtn{
+    display: flex;
+    flex-direction: row;
+}
+
+.doctorProgress{
+    margin-top: 10px;
+    margin-left: 20px;
 }
