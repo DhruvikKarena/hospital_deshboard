@@ -63,3 +63,15 @@ export const getPatientsStart = () => ({
     type: "GET_PATIENT_HISTORY_FAILURE",
   });
   
+  export const getLatestPatientsStart = () => ({
+    type: "GET_LATEST_PATIENTS_START",
+  });
+  
+  export const getLatestPatientsSuccess = (patients) => ({
+    type: "GET_LATEST_PATIENTS_SUCCESS",
+    payload: patients,
+  });
+  
+  export const getLatestPatientsFailure = () => ({
+    type: "GET_LATEST_PATIENTS_FAILURE",
+  });

@@ -15,6 +15,9 @@ import {
   getPatientHistoryStart,
   getPatientHistorySuccess,
   getPatientHistoryFailure,
+  getLatestPatientsStart,
+  getLatestPatientsSuccess,
+  getLatestPatientsFailure,
 } from "./PatientActions";
 
 //get info
@@ -107,5 +110,20 @@ export const getDocPatientHistory = async ( dispatch) => {
     dispatch(getPatientHistorySuccess(res.data));
   } catch (err) {
     dispatch(getPatientHistoryFailure());
+  }
+};
+
+//get latest patient info
+export const getLatestPatients = async (dispatch) => {
+  dispatch(getLatestPatientsStart());
+  try {
+    const res = await axios.get("/hospital/findPatients/"+JSON.parse(localStorage.getItem("user"))._id, {
+      headers: {
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+      },
+    });
+    dispatch(getLatestPatientsSuccess(res.data));
+  } catch (err) {
+    dispatch(getLatestPatientsFailure());
   }
 };

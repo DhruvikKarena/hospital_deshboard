@@ -1,27 +1,15 @@
 import "./widgetLg.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useContext } from "react";
 import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import { getLatestPatients } from "../../context/patientContext/apiCalls";
+import { PatientContext } from "../../context/patientContext/PatientContext";
 
 export default function WidgetLg() {
-  const [latestPaitents, setLatestPaitents] = useState([]);
+  const { patients, dispatch } = useContext(PatientContext);
 
   useEffect(() => {
-    const getLatestPaitents = async () => {
-      try{
-
-        const res = await axios.get("/hospital/findPatients/"+JSON.parse(localStorage.getItem("user"))._id, {
-          headers: {
-            token : "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-          },
-        });
-        setLatestPaitents(res.data);
-      }catch(err){
-        console.log(err);
-      }
-    };
-    getLatestPaitents();
-  },[])
+    getLatestPatients(dispatch);
+  },[dispatch])
 
   const Button = ({ type }) => {
     return <button className={"widgetLgButton " + type}>{type}</button>;
@@ -37,7 +25,7 @@ export default function WidgetLg() {
           <th className="widgetLgTh">Illness</th>
           <th className="widgetLgTh">Status</th>
         </tr>
-        {latestPaitents.map((latestPaitents) => ( 
+        {patients.map((latestPaitents) => ( 
         <tr  key={latestPaitents._id} className="widgetLgTr">
           <td className="widgetLgUser">
             <div className="widgetLgImg">

@@ -1,28 +1,17 @@
 import "./widgetSm.css";
 import { Visibility } from "@material-ui/icons";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useContext } from "react";
 import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import { getDoctors } from "../../context/doctorContext/apiCalls";
+import { DoctorContext } from "../../context/doctorContext/DoctorContext"
+
 
 export default function WidgetSm() {
-  const [doctors, setDoctors] = useState([]);
+  const { doctors, dispatch } = useContext(DoctorContext);
 
   useEffect(() => {
-    const getDoctors = async () => {
-      try{
-
-        const res = await axios.get("/hospital/findDoctorinfo/"+JSON.parse(localStorage.getItem("user"))._id, {
-          headers: {
-            token : "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-          },
-        });
-        setDoctors(res.data);
-      }catch(err){
-        console.log(err);
-      }
-    };
-    getDoctors();
-  },[])
+    getDoctors(dispatch);
+  },[dispatch]);
 
   return (
     <div className="widgetSm">
