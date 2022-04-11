@@ -3,6 +3,7 @@ import storage from "../../firebase";
 import { useContext, useState  } from "react";
 import { createPatient } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
+import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
 
 
 export default function NewPatient() {
@@ -35,6 +36,7 @@ export default function NewPatient() {
 
   const [img, setImg] = useState(null);
   const [toggle, setToggle] = useState(false);
+  const [progress, setProgress] = useState(0);
   //const [uploaded, setUploaded] = useState(0);
 
   const {dispatch} = useContext(PatientContext);
@@ -67,7 +69,8 @@ export default function NewPatient() {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+            setProgress(progress);
+          // console.log("Upload is " + progress + "% done");
         },
         (error) => {
           console.log(error);
@@ -97,7 +100,8 @@ export default function NewPatient() {
   const handleToggle = (e) => {
     //e.preventDefault();
     setToggle(!toggle);
-    console.log(toggle);
+    setProgress(0);
+    // console.log(toggle);
   }
 
   const handleSubmit = (e) => {
@@ -180,8 +184,13 @@ export default function NewPatient() {
             </label>
           <input type="file" id="file" name="photos_of_reports" onChange={(e) => setImg(e.target.files[0])}/>
         </div>
+        <div className="addPatientItem">
         {toggle ? (<button className="addPatientButton" onClick={handleUpload} >Upload</button>) :
          (<button className="addPatientButton" onClick={handleSubmit}>Create</button>) }
+         <div className='dProgress'>
+            {toggle ? <CircularProgressWithLabel value={progress} /> : <></>}
+            </div>
+        </div>
         {/* {uploaded === 1 ? (<button className="addPatientButton" onClick={handleSubmit}>Create</button>):
         (<button className="addPatientButton" onClick={handleUpload}>Upload</button>)} */}
       </form>

@@ -109,7 +109,8 @@
 .patientFormRight{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  margin-top: 300px;
+  /* justify-content: space-around; */
 }
 
 .patientUpload{

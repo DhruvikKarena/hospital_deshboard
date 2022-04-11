@@ -9,6 +9,7 @@ import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar"
 // import { Publish } from "@material-ui/icons";
 import { updatePatient } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
+import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
 
 
 export default function Patient() {
@@ -44,6 +45,7 @@ export default function Patient() {
     const {dispatch} = useContext(PatientContext);
     const [img, setImg] = useState(null);
     const [toggle, setToggle] = useState(false);
+    const [progress, setProgress] = useState(0);
     // useEffect(() => {
     //     setUpdate_Patient(update_patient => ({ ...update_patient, }));
     // }, patient._id);
@@ -51,7 +53,8 @@ export default function Patient() {
     const handleToggle = (e) => {
         //e.preventDefault();
         setToggle(!toggle);
-        console.log(toggle);
+        setProgress(0);
+        // console.log(toggle);
       }
 
       const upload = (items) => {
@@ -63,7 +66,8 @@ export default function Patient() {
             (snapshot) => {
               const progress =
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log("Upload is " + progress + "% done");
+                setProgress(progress);
+              // console.log("Upload is " + progress + "% done");
             },
             (error) => {
               console.log(error);
@@ -236,6 +240,9 @@ export default function Patient() {
                   </div>
                   {toggle ? (<button className="patientButton" onClick={handleUpload} >Upload</button>) :
                     (<button className="patientButton" onClick={handleUpdate}>Update</button>) }
+                  <div className='doctorProgress'>
+                    {toggle ? <CircularProgressWithLabel value={progress} /> : <></>}
+                  </div>
               </div>
           </form>
       </div>

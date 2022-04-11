@@ -109,7 +109,8 @@
 .hospitalInfoFormRight{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  margin-top: 150px;
+  /* justify-content: space-around; */
 }
 
 .hospitalInfoUpload{

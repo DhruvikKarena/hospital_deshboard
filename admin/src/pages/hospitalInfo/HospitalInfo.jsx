@@ -4,6 +4,7 @@ import storage from "../../firebase";
 import { HospitalContext } from "../../context/hospitalContext/HospitalContext";
 import { updateHospital } from "../../context/hospitalContext/apiCalls";
 import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
 
 export default function HospitalInfo() {
 
@@ -13,11 +14,13 @@ export default function HospitalInfo() {
     const {dispatch} = useContext(HospitalContext);
     const [img, setImg] = useState(null);
     const [toggle, setToggle] = useState(false);
+    const [progress, setProgress] = useState(0);
     // console.log(hospitalInfo);
 
     const handleToggle = (e) => {
       //e.preventDefault();
       setToggle(!toggle);
+      setProgress(0);
       //console.log(toggle);
     }
 
@@ -30,7 +33,8 @@ export default function HospitalInfo() {
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
+              setProgress(progress);
+            // console.log("Upload is " + progress + "% done");
           },
           (error) => {
             console.log(error);
@@ -134,6 +138,9 @@ export default function HospitalInfo() {
                   </div>
                   {toggle ? (<button className="hospitalInfoButton" onClick={handleUpload} >Upload</button>) :
                     (<button className="hospitalInfoButton" onClick={handleUpdate}>Update</button>) }
+                    <div className='doctorProgress'>
+                      {toggle ? <CircularProgressWithLabel value={progress} /> : <></>}
+                    </div>
               </div>
           </form>
       </div>
