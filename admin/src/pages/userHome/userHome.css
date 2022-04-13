@@ -58,48 +58,6 @@
         background-color: green;
     }
 
-    .hospitalInfoHidden{
-        display: grid;
-        border-style: solid;
-        border-radius: 10px;
-        grid-template-columns: auto auto auto auto;
-        margin: 10px;
-        padding: 0px 50px;
-        align-items: center;
-        height: 120px;
-        justify-content: space-between;
-        animation: fadeIn linear 2s;
-        -webkit-animation: fadeIn linear 2s;
-        -moz-animation: fadeIn linear 2s;
-        -o-animation: fadeIn linear 2s;
-        -ms-animation: fadeIn linear 2s;
-    }
-
-    @keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      
-      @-moz-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      
-      @-webkit-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      
-      @-o-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-      
-      @-ms-keyframes fadeIn {
-        0% {opacity:0;}
-        100% {opacity:1;}
-      }
-
     .hospitalInfoItemHidden{
         display: flex;
     }
@@ -109,4 +67,21 @@
         font-weight: 600;
         font-size: large;
     }
+
+@media screen 
+  and (max-width: 426px) {
+    .featuredForPatient{
+      height: 60vh;
+    }
+
+    .hospitalInfoForPatient{
+      display: flex;
+      flex-direction: column;
+      height: 300px;
+    }
+
+    .hospitalInfoItemForPatient{
+      margin: 10px;
+    }
+}
 

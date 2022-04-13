@@ -122,9 +122,10 @@ export default function UserHistory() {
                 <span className="profileinfoItem">Description: </span> 
                 <span className="profileinfoItem">{history.description}</span></Item>
                 </Grid>
-                <Grid item xs={6} md={12}>
+                <Grid item xs={12} md={12} sm={6}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Photos Of Reports: </span> </Item>
+                <div></div>
                 <Item elevation={0}> 
                 {history.photos_of_reports.length !== 0 ? history.photos_of_reports.map((photos_of_report) =>(<img key={photos_of_report} src={photos_of_report} alt="" className="historyImg" />)) :
                 <span className="profileinfoItem">No Photos Avaliable </span>}

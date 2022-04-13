@@ -90,3 +90,24 @@
     margin-top: 10px;
     margin-left: 20px;
 }
+
+@media screen 
+  and (max-width: 426px) {
+     .doctordivItem{
+        width: 355px;
+        display: flex;
+        justify-content: center;
+     } 
+
+    .doctordivItemtext{
+        width: 350px;
+        margin: 0px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .doctoruploadfield{
+        flex-direction: column;
+    }
+}

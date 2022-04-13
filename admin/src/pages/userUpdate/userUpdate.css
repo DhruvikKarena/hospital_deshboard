@@ -75,3 +75,21 @@
     padding: 5px 10px;
     margin-bottom: 5px;
 }
+
+@media screen 
+  and (max-width: 426px) {
+     .divItem{
+        width: 355px;
+        display: flex;
+        justify-content: center;
+     } 
+
+    .divItemtext{
+        width: 350px;
+        margin: 0px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}

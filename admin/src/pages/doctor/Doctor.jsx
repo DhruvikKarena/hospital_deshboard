@@ -17,7 +17,7 @@ export default function Doctor() {
           <div className="doctorTopRight">
               <div className="doctorInfoTop">
                 <div className="doctorInfoImg">
-                    {doctor.profilePic !== undefined ? <img className="doctorListImg" src={doctor.profilePic} alt=""/> :
+                    {doctor.profilePic !== undefined ? <img className="doctorImg1" src={doctor.profilePic} alt=""/> :
                 <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(doctor.doctor_full_name)}/></div>}
                 </div>
                   <span className="doctorName">{doctor.doctor_full_name}</span>

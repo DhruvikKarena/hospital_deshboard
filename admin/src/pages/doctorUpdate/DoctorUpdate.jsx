@@ -8,8 +8,19 @@ import Grid from '@mui/material/Grid';
 import './doctorUpdate.css';
 import { updateDoctor } from '../../context/doctorContext/apiCalls';
 import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+        padding: '10px',
+        [theme.breakpoints.down('sm')]: {
+            textAlign: 'center',
+        },
+    },
+}));
 
 export default function DoctorUpdate() {
+    const classes = useStyles();
 
     const [update_doctor, setUpdate_Doctor] = useState({id: JSON.parse(localStorage.getItem("user"))._id});
     const {dispatch} = useContext(DoctorContext);
@@ -95,8 +106,8 @@ export default function DoctorUpdate() {
         <form className="doctorprofileinfo">
                <div className='doctorprofileedit'>
                   <Box sx={{ flexGrow: 1 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={4} md={4}>
+                    <Grid container spacing={2} className={classes.container}>
+                        <Grid item xs={12} md={4} sm={6}>
                             <div className='doctordivItem'>
                             <div className='doctordivItemtext'>
                             <label className='doctorprofileLable'>Full Name: </label>
@@ -104,7 +115,7 @@ export default function DoctorUpdate() {
                             </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='doctordivItem'>
                             <div className='doctordivItemtext'>
                                 <label className='doctorprofileLable'>Email: </label>
@@ -112,7 +123,7 @@ export default function DoctorUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='doctordivItem'>
                             <div className='doctordivItemtext'>
                                 <label className='doctorprofileLable'>Specilized In: </label>
@@ -120,7 +131,7 @@ export default function DoctorUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='doctordivItem'>
                             <div className='doctordivItemtext'>
                                 <label className='doctorprofileLable'>Blood Group: </label>
@@ -128,7 +139,7 @@ export default function DoctorUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='doctordivItem'>
                             <div className='doctordivItemtext'>
                                 <label className='doctorprofileLable'>Age: </label>
@@ -136,7 +147,7 @@ export default function DoctorUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='doctordivItem'>
                             <div className='doctordivItemtext'>
                                 <label className='doctorprofileLable'>Phone Number: </label>
@@ -144,7 +155,7 @@ export default function DoctorUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={6}>
+                        <Grid item xs={12} md={6} sm={6}>
                             <div className='doctordivItem'>
                             <div className='doctordivItemtext'>
                                 <label className='doctorprofileLable'>Address: </label>
@@ -152,7 +163,7 @@ export default function DoctorUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={8}>
+                        <Grid item xs={12} md={8} sm={6}>
                             <div>
                             <div className='doctorp-button'>
                                     <label className='doctorprofileLable'>For Upload </label>
@@ -163,7 +174,7 @@ export default function DoctorUpdate() {
                                     </div>
                             </div>
                             <div className='doctoruploadfield'>
-                            <Grid item xs={4} md={4}>
+                            <Grid item xs={12} md={4} sm={6}>
                             <div className='doctordivItem'>
                                 <div className='doctordivItemtext'>
                                     <label className='doctorprofileLable'>Doctor License: </label>
@@ -171,7 +182,7 @@ export default function DoctorUpdate() {
                                     </div>
                                 </div>
                             </Grid>
-                            <Grid item xs={4} md={4}>
+                            <Grid item xs={12} md={4} sm={6}>
                             <div className='doctordivItem'>
                                 <div className='doctordivItemtext'>
                                     <label className='doctorprofileLable'>Profile Picture: </label>
@@ -181,7 +192,7 @@ export default function DoctorUpdate() {
                         </Grid>
                         </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='doctordivbtn'>
                             <div className='doctordivItemtext'>
                              {toggle ? (<button className="doctorprofilebtnUpload" onClick={handleUpload}>Upload</button>) :

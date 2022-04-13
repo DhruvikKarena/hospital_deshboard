@@ -93,7 +93,7 @@ export default function UserUpdate() {
                <div className='profileedit'>
                   <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2}>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                             <div className='divItem'>
                             <div className='divItemtext'>
                             <label className='profileLable'>Full Name: </label>
@@ -101,7 +101,7 @@ export default function UserUpdate() {
                             </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='divItem'>
                             <div className='divItemtext'>
                                 <label className='profileLable'>Email: </label>
@@ -109,7 +109,7 @@ export default function UserUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='divItem'>
                             <div className='divItemtext'>
                                 <label className='profileLable'>Blood Group: </label>
@@ -117,7 +117,7 @@ export default function UserUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='divItem'>
                             <div className='divItemtext'>
                                 <label className='profileLable'>Age: </label>
@@ -125,7 +125,7 @@ export default function UserUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='divItem'>
                             <div className='divItemtext'>
                                 <label className='profileLable'>Phone Number: </label>
@@ -133,7 +133,7 @@ export default function UserUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                             <div className='divItem'>
                             <div className='divItemtext'>
                                 <label className='profileLable'>Address: </label>
@@ -141,7 +141,7 @@ export default function UserUpdate() {
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='divItem'>
                             <div className='divItemtext'>
                                 <div className='p-button'>
@@ -151,11 +151,13 @@ export default function UserUpdate() {
                                     <span className={`react-switch-button`} />
                                 </label>
                                 </div>
+                                <div className='divItemtext'>
                                 <input className='profileInput' type="file" id="file" name="profilePic" onChange={(e) => setImg(e.target.files[0])}/>
+                                </div>
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={12} md={4} sm={6}>
                         <div className='divItem'>
                             <div className='divItemtext'>
                              {toggle ? (<button className="profilebtnUpload" onClick={handleUpload} >Upload</button>) :

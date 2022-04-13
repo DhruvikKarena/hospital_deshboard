@@ -58,7 +58,7 @@ export default function DoctorHome() {
                         <span className="doctorprofileinfoItem">Specilization: </span>
                         <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).specilized_in} </span></Item>
                     </Grid>
-                    <Grid item xs={6} md={4}>
+                    <Grid item xs={12} md={4} sm={6}>
                     <Item elevation={0}>
                     <span className="doctorprofileinfoItem">Email: </span> 
                     <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).email}</span></Item>
@@ -83,13 +83,15 @@ export default function DoctorHome() {
                     <span className="doctorprofileinfoItem">Address: </span> 
                     <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).address}</span></Item>
                     </Grid>
-                    <Grid item xs={6} md={12}>
+                    <Grid item xs={12} md={12} sm={6}>
                     <Item elevation={0}> 
                     <span className="doctorprofileinfoItem">Doctor Licence: </span> </Item>
+                    <div className='licencePhoto'>
                     <Item elevation={0}> 
                     {doctor_info.doctor_licence.length !== 0 ? doctor_info.doctor_licence.map((licence) =>(<img key={licence} src={licence} alt="" className="historyImg" />)) :
                     <span className="doctorprofileinfoItem">No Photos Avaliable </span>}
                     </Item>
+                    </div>
                     </Grid>
                 </Grid>
                 </Box>
@@ -135,13 +137,15 @@ export default function DoctorHome() {
                 <span className="doctorprofileinfoItem">Description: </span> 
                 <span className="doctorprofileinfoItem">{history.description}</span></Item>
                 </Grid>
-                <Grid item xs={6} md={12}>
+                <Grid item xs={12} md={12} sm={6}>
                 <Item elevation={0}> 
                 <span className="doctorprofileinfoItem">Photos Of Reports: </span> </Item>
+                <div className='licencePhoto'>
                 <Item elevation={0}> 
                 {history.photos_of_reports.length !== 0 ? history.photos_of_reports.map((photos_of_report) =>(<img key={photos_of_report} src={photos_of_report} alt="" className="historyImg" />)) :
                 <span className="doctorprofileinfoItem">No Photos Avaliable </span>}
                  </Item>
+                 </div>
                 </Grid>
             </Grid>
             </Box>
