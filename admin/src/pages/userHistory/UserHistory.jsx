@@ -54,14 +54,19 @@ export default function UserHistory() {
                     <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).full_name} </span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
-                <Item elevation={0}>
-                <span className="profileinfoItem">Email: </span> 
-                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).email}</span></Item>
-                </Grid>
-                <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Age: </span> 
                 <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).age}</span></Item>
+                </Grid>
+                <Grid item xs={12} md={4} sm={6}>
+                <Item elevation={0}> 
+                <span className="profileinfoItem">ID: </span> 
+                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user"))._id}</span></Item>
+                </Grid>
+                <Grid item xs={12} md={4} sm={6}>
+                <Item elevation={0}>
+                <span className="profileinfoItem">Email: </span> 
+                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).email}</span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 

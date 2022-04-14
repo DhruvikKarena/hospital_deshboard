@@ -143,19 +143,20 @@ export default function UserUpdate() {
                         </Grid>
                         <Grid item xs={12} md={4} sm={6}>
                         <div className='divItem'>
-                            <div className='divItemtext'>
+                            <div className='divItempphoto'>
                                 <div className='p-button'>
                                 <label className='profileLable'>Profile Picture: </label>
                                 <input className="react-switch-checkbox" id={`react-switch-new`} type="checkbox" checked={toggle} onChange={handleToggle} />
                                     <label style={{ background: toggle && '#06D6A0' }} className="react-switch-label" htmlFor={`react-switch-new`} >
                                     <span className={`react-switch-button`} />
                                 </label>
-                                </div>
+                                </div >
+                                
                                 <div className='divItemtext'>
-                                <input className='profileInput' type="file" id="file" name="profilePic" onChange={(e) => setImg(e.target.files[0])}/>
+                                <input className='profileInputphoto' type="file" id="file" name="profilePic" onChange={(e) => setImg(e.target.files[0])}/>
                                 </div>
                                 </div>
-                            </div>
+                                </div>
                         </Grid>
                         <Grid item xs={12} md={4} sm={6}>
                         <div className='divItem'>

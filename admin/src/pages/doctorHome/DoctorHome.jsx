@@ -59,6 +59,11 @@ export default function DoctorHome() {
                         <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).specilized_in} </span></Item>
                     </Grid>
                     <Grid item xs={12} md={4} sm={6}>
+                    <Item elevation={0} >
+                        <span className="doctorprofileinfoItem">ID: </span>
+                        <span className="doctorprofileinfoItem">{doctor_info._id} </span></Item>
+                    </Grid>
+                    <Grid item xs={12} md={4} sm={6}>
                     <Item elevation={0}>
                     <span className="doctorprofileinfoItem">Email: </span> 
                     <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).email}</span></Item>

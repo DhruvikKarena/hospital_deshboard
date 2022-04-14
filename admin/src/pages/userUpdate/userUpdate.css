@@ -37,7 +37,7 @@
     color: black,
 }
 
-.divItemtext{
+.divItemtext, .divItempphoto{
     padding: 8px 8px;
     margin-left: 50px;
 }
@@ -90,6 +90,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .divItempphoto{
+        display: flex;
         flex-direction: column;
+    }
+
+    .p-button{
+        margin-left: 30px;
+    }
+
+    .profileInputphoto{
+        margin-right: 50px;
     }
 }
