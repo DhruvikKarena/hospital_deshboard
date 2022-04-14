@@ -2,7 +2,7 @@ import "./doctorList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 //import { doctorRows } from "../../dummyData";
-import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { DoctorContext } from "../../context/doctorContext/DoctorContext";
@@ -39,7 +39,7 @@ export default function DoctorList() {
           <>
           <div className="doctorListItem">
             {params.row.profilePic !== undefined ? <img className="doctorListImg" src={params.row.profilePic} alt=""/> :
-            <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(params.row.username)}/></div>}
+            <div className="avtimgdoc"><BackgroundLetterAvatar value={params.row.username}/></div>}
           </div>
           <div className="doctorListItem">{params.row.username}</div>
           </>

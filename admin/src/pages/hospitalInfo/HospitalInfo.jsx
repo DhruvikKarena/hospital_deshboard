@@ -3,7 +3,7 @@ import "./hospitalInfo.css";
 import storage from "../../firebase";
 import { HospitalContext } from "../../context/hospitalContext/HospitalContext";
 import { updateHospital } from "../../context/hospitalContext/apiCalls";
-import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
 
 export default function HospitalInfo() {
@@ -91,7 +91,7 @@ export default function HospitalInfo() {
               <div className="hospitalInfoInfoTop">
                   <div className="hospitalInfoInfoImg">
                     {hospitalInfo.profilePic !== undefined ? <img className="hospitalInfoInfoImg" src={hospitalInfo.profilePic} alt=""/> :
-                    <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(hospitalInfo.hospitalname)}/></div>}
+                    <div className="avtimgdoc"><BackgroundLetterAvatar value={hospitalInfo.hospitalname}/></div>}
                   </div>
                   <span className="hospitalInfoName">{hospitalInfo.hospitalname}</span>
               </div>

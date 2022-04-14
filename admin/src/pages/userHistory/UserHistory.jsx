@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import './userHistory.css';
-import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import { useContext, useEffect, useState } from "react";
 import { getPatientHistory } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
@@ -40,7 +40,7 @@ export default function UserHistory() {
         <div className="userInfo">
         <div className="profile">
         {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="profilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
-        <div className='imgavt'><BackgroundLetterAvatar {...getname(JSON.parse(localStorage.getItem("user")).full_name)} /></div>}
+        <div className='imgavt'><BackgroundLetterAvatar value={JSON.parse(localStorage.getItem("user")).full_name} /></div>}
             <h1 className="profileName">{JSON.parse(localStorage.getItem("user")).full_name}</h1>
         <ModeEditIcon sx={{ fontSize: 38 }} className='editbtn' onClick={handleToggleedit}/>
         </div>

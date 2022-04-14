@@ -23,6 +23,7 @@ export const getDoctors = async (dispatch) => {
       },
     });
     dispatch(getDoctorsSuccess(res.data));
+    // console.log("res",res.data)
   } catch (err) {
     dispatch(getDoctorsFailure());
   }

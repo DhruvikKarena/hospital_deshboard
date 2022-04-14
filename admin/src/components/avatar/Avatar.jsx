@@ -1,8 +1,8 @@
 // import * as React from 'react';
+import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
-let avatar_name = "dh kr";
 
 function stringToColor(string) {
   let hash = 0;
@@ -29,22 +29,22 @@ function stringAvatar(name) {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: `${name.split(' ')[0][0]}`,
+    children: `${name[0][0]}`,
   };
 }
 
-export function getname(sta){
-    avatar_name = sta;
-}
 
-export default function BackgroundLetterAvatar() {
-    // const [avatar, setAvatar] = useState("");
+export default function BackgroundLetterAvatar(props) {
 
   return (
     <Stack direction="row" spacing={2}>
-      <Avatar {...stringAvatar(avatar_name)} />
+      <Avatar {...stringAvatar(props.value)} />
     </Stack>
   );
+}
+
+BackgroundLetterAvatar.prototype = {
+  value: PropTypes.string.isRequired,
 }
 
 

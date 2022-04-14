@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { useContext, useEffect, useState } from "react";
 import "./doctorHome.css";
@@ -10,6 +10,8 @@ import DoctorNavbar from "../../components/doctorNavbar/DoctorNavbar";
 import DoctorUpdate from "../doctorUpdate/DoctorUpdate";
 import { getDocPatientHistory } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
+// import CircularProgress from '@mui/material/CircularProgress';
+// import { Suspense } from 'react';
 
 export default function DoctorHome() {
 
@@ -22,6 +24,8 @@ export default function DoctorHome() {
       }));
       
     const [toggleedit, setToggleedit] = useState(false);
+    // const [loaded, setLoaded] = useState(null);
+    // const [isPending, startTransition] = useTransition();
     const { patients, dispatch } = useContext(PatientContext);
 
     const doctor_info = JSON.parse(localStorage.getItem("user"));
@@ -39,8 +43,8 @@ export default function DoctorHome() {
             <DoctorNavbar />
             <div className="doctorInfo">
                 <div className="doctorprofile">
-                {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="doctorprofilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
-                <div className='doctorimgavt'><BackgroundLetterAvatar {...getname(JSON.parse(localStorage.getItem("user")).doctor_full_name)} /></div>}
+                {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? (<img className="doctorprofilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> ) :
+                <div className='doctorimgavt'><BackgroundLetterAvatar value={JSON.parse(localStorage.getItem("user")).doctor_full_name} /></div>}
                     <h1 className="doctorprofileName">{JSON.parse(localStorage.getItem("user")).doctor_full_name}</h1>
                 <ModeEditIcon sx={{ fontSize: 38 }} className='doctoreditbtn' onClick={handleToggleedit}/>
             </div>

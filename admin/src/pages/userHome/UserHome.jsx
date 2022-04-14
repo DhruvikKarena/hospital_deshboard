@@ -2,7 +2,7 @@ import "./userHome.css";
 import { useContext, useEffect } from "react";
 import { HospitalContext } from "../../context/hospitalContext/HospitalContext";
 import { getAllHospitals } from "../../context/hospitalContext/apiCalls";
-import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import Navbar from "../../components/navbar/Navbar";
 
 export default function UserHome() {
@@ -33,7 +33,7 @@ export default function UserHome() {
     <div key={hospital._id} className="hospitalInfoForPatient">
     <div className="hospitalInfoItemForPatient">
         {hospital.profilePic !== undefined ? <img className="hospitalPic" src={hospital.profilePic} alt=""/> :
-        <div key={hospital._id+hospital.hospitalname} className="hospitalPic"><BackgroundLetterAvatar {...getname(hospital.hospitalname)}/></div>}
+        <div className="hospitalPic"><BackgroundLetterAvatar value={hospital.hospitalname}/></div>}
         <span className="hospitalInfoName">{hospital.hospitalname}</span>
     </div>
 

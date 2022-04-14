@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import "./patient.css";
 import { useContext, useState } from "react";
 import storage from "../../firebase";
-import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 //import axios from "axios";
 //import Chart from "../../components/chart/Chart"
 //import {patientData} from "../../dummyData"
@@ -144,7 +144,7 @@ export default function Patient() {
               <div className="patientInfoTop">
                   <div className="patientInfoImg">
                     {patient.profilePic !== undefined ? <img className="doctorListImg" src={patient.profilePic} alt=""/> :
-                    <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(patient.patient_name)}/></div>}
+                    <div className="avtimgdoc"><BackgroundLetterAvatar value={patient.patient_name}/></div>}
                   </div>
                   <span className="patientName">{patient.patient_name}</span>
               </div>

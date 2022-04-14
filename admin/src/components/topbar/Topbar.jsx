@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./topbar.css";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
-import BackgroundLetterAvatar, { getname } from "../../components/avatar/Avatar";
+import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import { NotificationsNone, Settings } from "@material-ui/icons";
 import { logOut } from "../../context/authContext/apiCalls";
 import { AuthContext } from "../../context/authContext/AuthContext";
@@ -52,7 +52,7 @@ export default function Topbar() {
           </div>
           <div className="topAvatar">
             {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="topAvatar" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
-            <div className="avtimgdoc"><BackgroundLetterAvatar {...getname(JSON.parse(localStorage.getItem("user")).hospitalname)}/></div>}
+            <div className="avtimgdoc"><BackgroundLetterAvatar value={JSON.parse(localStorage.getItem("user")).hospitalname}/></div>}
           </div>
           <Link to={"/"} className="link" onClick={handleLogout}><div className="logoutbtn">Log Out</div></Link>
         </div>
