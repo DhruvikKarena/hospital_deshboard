@@ -10,7 +10,10 @@ import DoctorNavbar from "../../components/doctorNavbar/DoctorNavbar";
 import DoctorUpdate from "../doctorUpdate/DoctorUpdate";
 import { getDocPatientHistory } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
-// import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
+import { AuthContext } from "../../context/authContext/AuthContext";
+import { DoctorContext } from '../../context/doctorContext/DoctorContext';
+import ImageLoader from '../../components/imageLoader/ImageLoader';
 // import { Suspense } from 'react';
 
 export default function DoctorHome() {
@@ -22,16 +25,19 @@ export default function DoctorHome() {
         textAlign: 'center',
         color: 'black',    
       }));
-      
-    const [toggleedit, setToggleedit] = useState(false);
-    // const [loaded, setLoaded] = useState(null);
-    // const [isPending, startTransition] = useTransition();
-    const { patients, dispatch } = useContext(PatientContext);
 
-    const doctor_info = JSON.parse(localStorage.getItem("user"));
+    const { user } = useContext(AuthContext);
+    const { doctors } = useContext(DoctorContext);
+    const [toggleedit, setToggleedit] = useState(false);
+    const [loaded, setLoaded] = useState(false);
+    const { patients, dispatch } = useContext(PatientContext);
 
     const handleToggleedit = (e) => {
         setToggleedit(!toggleedit);
+    };
+
+    const imgloader = () => {
+        setLoaded(true);
     };
 
     useEffect(() => {
@@ -43,9 +49,12 @@ export default function DoctorHome() {
             <DoctorNavbar />
             <div className="doctorInfo">
                 <div className="doctorprofile">
-                {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? (<img className="doctorprofilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> ) :
-                <div className='doctorimgavt'><BackgroundLetterAvatar value={JSON.parse(localStorage.getItem("user")).doctor_full_name} /></div>}
-                    <h1 className="doctorprofileName">{JSON.parse(localStorage.getItem("user")).doctor_full_name}</h1>
+                {user.profilePic === undefined ? 
+                <div className='doctorimgavt'><BackgroundLetterAvatar value={user.doctor_full_name} /></div> :
+                <>
+                <img className="doctorprofilePic" src={doctors[0] !== undefined ? doctors[0].profilePic : user.profilePic} alt="" onLoad={imgloader}/> 
+                {!loaded && <div className="doctorprofileProcess"><CircularProgress sx={{ color: '#11b82d' }} /> </div>}</> }
+                <h1 className="doctorprofileName">{doctors[0] !== undefined ? doctors[0].doctor_full_name : user.doctor_full_name}</h1>
                 <ModeEditIcon sx={{ fontSize: 38 }} className='doctoreditbtn' onClick={handleToggleedit}/>
             </div>
             <div className="doctorprofileinfo">
@@ -55,50 +64,54 @@ export default function DoctorHome() {
                     <Grid item xs={6} md={4}>
                     <Item elevation={0} >
                         <span className="doctorprofileinfoItem">Full Name: </span>
-                        <span className="doctorprofileinfoItem">{doctor_info.doctor_full_name} </span></Item>
+                        <span className="doctorprofileinfoItem">{doctors[0] !== undefined ? doctors[0].doctor_full_name : user.doctor_full_name} </span></Item>
                     </Grid>
                     <Grid item xs={6} md={4}>
                     <Item elevation={0} >
                         <span className="doctorprofileinfoItem">Specilization: </span>
-                        <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).specilized_in} </span></Item>
+                        <span className="doctorprofileinfoItem">{doctors[0] !== undefined ? doctors[0].specilized_in : user.specilized_in} </span></Item>
                     </Grid>
                     <Grid item xs={12} md={4} sm={6}>
                     <Item elevation={0} >
                         <span className="doctorprofileinfoItem">ID: </span>
-                        <span className="doctorprofileinfoItem">{doctor_info._id} </span></Item>
+                        <span className="doctorprofileinfoItem">{doctors[0] !== undefined ? doctors[0]._id : user._id} </span></Item>
                     </Grid>
                     <Grid item xs={12} md={4} sm={6}>
                     <Item elevation={0}>
                     <span className="doctorprofileinfoItem">Email: </span> 
-                    <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).email}</span></Item>
+                    <span className="doctorprofileinfoItem">{doctors[0] !== undefined ? doctors[0].email : user.email}</span></Item>
                     </Grid>
                     <Grid item xs={6} md={4}>
                     <Item elevation={0}> 
                     <span className="doctorprofileinfoItem">Age: </span> 
-                    <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).age}</span></Item>
+                    <span className="doctorprofileinfoItem">{doctors[0] !== undefined ? doctors[0].age : user.age}</span></Item>
                     </Grid>
                     <Grid item xs={6} md={4}>
                     <Item elevation={0}> 
                     <span className="doctorprofileinfoItem">Blood Group: </span> 
-                    <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).bloode_group}</span></Item>
+                    <span className="doctorprofileinfoItem">{doctors[0] !== undefined ? doctors[0].bloode_group : user.bloode_group}</span></Item>
                     </Grid>
                     <Grid item xs={6} md={4}>
                     <Item elevation={0}> 
                     <span className="doctorprofileinfoItem">Phone Number: </span> 
-                    <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).phone_number}</span></Item>
+                    <span className="doctorprofileinfoItem">{doctors[0] !== undefined ? doctors[0].phone_number : user.phone_number}</span></Item>
                     </Grid>
                     <Grid item xs={6} md={4}>
                     <Item elevation={0}> 
                     <span className="doctorprofileinfoItem">Address: </span> 
-                    <span className="doctorprofileinfoItem">{JSON.parse(localStorage.getItem("user")).address}</span></Item>
+                    <span className="doctorprofileinfoItem">{doctors[0] !== undefined ? doctors[0].address : user.address}</span></Item>
                     </Grid>
                     <Grid item xs={12} md={12} sm={6}>
                     <Item elevation={0}> 
                     <span className="doctorprofileinfoItem">Doctor Licence: </span> </Item>
                     <div className='licencePhoto'>
                     <Item elevation={0}> 
-                    {doctor_info.doctor_licence.length !== 0 ? doctor_info.doctor_licence.map((licence) =>(<img key={licence} src={licence} alt="" className="historyImg" />)) :
+                    {/* <img key={licence} src={licence} alt="" className="historyImg" /> */}
+                    <div className="boximgdiv1">
+                    {user.doctor_licence.length !== 0 ? 
+                    user.doctor_licence.map((licence) =>(<ImageLoader key={licence} value={licence} />)) :
                     <span className="doctorprofileinfoItem">No Photos Avaliable </span>}
+                    </div>
                     </Item>
                     </div>
                     </Grid>
@@ -150,9 +163,11 @@ export default function DoctorHome() {
                 <Item elevation={0}> 
                 <span className="doctorprofileinfoItem">Photos Of Reports: </span> </Item>
                 <div className='licencePhoto'>
-                <Item elevation={0}> 
-                {history.photos_of_reports.length !== 0 ? history.photos_of_reports.map((photos_of_report) =>(<img key={photos_of_report} src={photos_of_report} alt="" className="historyImg" />)) :
+                <Item elevation={0}>
+                <div className="boximgdiv1"> 
+                {history.photos_of_reports.length !== 0 ? history.photos_of_reports.map((photos_of_report) =>(<ImageLoader key={photos_of_report} value={photos_of_report} />)) :
                 <span className="doctorprofileinfoItem">No Photos Avaliable </span>}
+                </div>
                  </Item>
                  </div>
                 </Grid>

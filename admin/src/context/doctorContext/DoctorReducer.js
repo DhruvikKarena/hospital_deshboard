@@ -82,7 +82,7 @@ const DoctorReducer = (state, action) => {
         };
       case "UPDATE_DOCTOR_SUCCESS":
         return {
-          doctors: state.doctor,
+          doctors: [action.payload],
           isFetching: false,
           error: false,
         };

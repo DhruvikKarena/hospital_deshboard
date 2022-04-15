@@ -14,6 +14,17 @@
     object-fit: cover;
     margin-right: 20px;
     margin-left: 30px;
+    position: relative;
+}
+
+.profilePicProcess{
+    margin-right: 20px;
+    margin-left: 30px;
+    width: 51px;
+    height: 51px;
+    border-color: #fff;
+    position: absolute;
+    background-color: #fff;
 }
 
 .imgavt{

@@ -14,6 +14,17 @@
     object-fit: cover;
     margin-right: 20px;
     margin-left: 30px;
+    position: relative;
+}
+
+.doctorprofileProcess{
+    margin-right: 20px;
+    margin-left: 30px;
+    width: 51px;
+    height: 51px;
+    border-color: #fff;
+    position: absolute;
+    background-color: #fff;
 }
 
 .doctorimgavt{
@@ -45,6 +56,12 @@
     font-size: 20px;
 }
 
+.doctorhistoryimg{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 @media screen 
   and (max-width: 426px) {
      .licencePhoto{
@@ -56,4 +73,10 @@
      .historyImg{
          margin-top: 10px;
      }
+}
+
+.boximgdiv1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

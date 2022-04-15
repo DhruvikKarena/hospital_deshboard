@@ -64,12 +64,12 @@ export const updateDoctor = async (doctor, dispatch) => {
   // console.log(user);
   dispatch(updateDoctorStart());
   try {
-      await axios.put("/doctor/"+doctor.id, doctor, {
+    const res = await axios.put("/doctor/"+doctor.id, doctor, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
     });
-    dispatch(updateDoctorSuccess(doctor));
+    dispatch(updateDoctorSuccess(res.data));
   } catch (err) {
     dispatch(updateDoctorFailure());
   }

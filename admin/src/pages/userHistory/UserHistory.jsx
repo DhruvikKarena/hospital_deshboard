@@ -11,6 +11,8 @@ import Navbar from "../../components/navbar/Navbar";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 // import { Link } from 'react-router-dom'; 
 import UserUpdate from '../userUpdate/UserUpdate';
+import CircularProgress from '@mui/material/CircularProgress';
+import ImageLoader from '../../components/imageLoader/ImageLoader';
 
 export default function UserHistory() {
 
@@ -25,6 +27,11 @@ export default function UserHistory() {
 
     const { patients, dispatch } = useContext(PatientContext);
     const [toggleedit, setToggleedit] = useState(false);
+    const [loaded, setLoaded] = useState(false);
+
+    const imgloader = () => {
+        setLoaded(true);
+    };
 
     const handleToggleedit = (e) => {
         setToggleedit(!toggleedit);
@@ -39,7 +46,11 @@ export default function UserHistory() {
         <Navbar />
         <div className="userInfo">
         <div className="profile">
-        {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="profilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
+        {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? 
+        <>
+        <img className="profilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt="" onLoad={imgloader}/> 
+        {!loaded && <div className="profilePicProcess"><CircularProgress sx={{ color: '#11b82d' }} /> </div>}
+        </> :
         <div className='imgavt'><BackgroundLetterAvatar value={JSON.parse(localStorage.getItem("user")).full_name} /></div>}
             <h1 className="profileName">{JSON.parse(localStorage.getItem("user")).full_name}</h1>
         <ModeEditIcon sx={{ fontSize: 38 }} className='editbtn' onClick={handleToggleedit}/>
@@ -131,9 +142,11 @@ export default function UserHistory() {
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Photos Of Reports: </span> </Item>
                 <div></div>
-                <Item elevation={0}> 
-                {history.photos_of_reports.length !== 0 ? history.photos_of_reports.map((photos_of_report) =>(<img key={photos_of_report} src={photos_of_report} alt="" className="historyImg" />)) :
+                <Item elevation={0}>
+                <div className="boximgdiv1"> 
+                {history.photos_of_reports.length !== 0 ? history.photos_of_reports.map((photos_of_report) =>(<ImageLoader key={photos_of_report} value={photos_of_report} />)) :
                 <span className="profileinfoItem">No Photos Avaliable </span>}
+                </div>
                  </Item>
                 </Grid>
             </Grid>
