@@ -10,12 +10,12 @@ export const updateUser = async (user, dispatch) => {
   // console.log(user);
   dispatch(updateUserStart());
   try {
-      await axios.put("/users/"+user.id, user, {
+    const res = await axios.put("/users/"+user.id, user, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
     });
-    dispatch(updateUserSuccess(user));
+    dispatch(updateUserSuccess(res.data));
   } catch (err) {
     dispatch(updateUserFailure());
   }

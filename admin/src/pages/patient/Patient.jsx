@@ -10,6 +10,7 @@ import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import { updatePatient } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
 import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
+import ImageLoader from '../../components/imageLoader/ImageLoader';
 
 
 export default function Patient() {
@@ -189,7 +190,7 @@ export default function Patient() {
                     <span className="patientInfoKey" id="photos_of_reports">Photos Of Reports:</span>
                   </div>
                   <div className="patientReports">
-                  {patient.photos_of_reports.map((photos_of_report) =>(<img key={photos_of_report} src={photos_of_report} alt="" className="patientUploadImg" />))}
+                  {patient.photos_of_reports.map((photos_of_report) =>(<ImageLoader key={photos_of_report} value={photos_of_report} />))}
                   </div>
               </div>
           </div>

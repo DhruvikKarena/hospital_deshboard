@@ -8,7 +8,7 @@ const HospitalReducer = (state, action) => {
         };
       case "UPDATE_HOSPITAL_SUCCESS":
         return {
-          hospitals: state.hospital,
+          hospitals: [action.payload],
           isFetching: false,
           error: false,
         };

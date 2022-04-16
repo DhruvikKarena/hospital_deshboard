@@ -8,7 +8,7 @@ const UserReducer = (state, action) => {
         };
       case "UPDATE_USER_SUCCESS":
         return {
-          users: state.user,
+          users: [action.payload],
           isFetching: false,
           error: false,
         };

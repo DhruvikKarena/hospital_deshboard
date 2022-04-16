@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { DoctorContext } from "../../context/doctorContext/DoctorContext";
 import { deleteDoctor, getDoctors } from "../../context/doctorContext/apiCalls";
+import ImageLoader from '../../components/imageLoader/ImageLoader';
 
 export default function DoctorList() {
   const [doctor, setDoctor] = useState([]);
@@ -38,7 +39,8 @@ export default function DoctorList() {
         return (
           <>
           <div className="doctorListItem">
-            {params.row.profilePic !== undefined ? <img className="doctorListImg" src={params.row.profilePic} alt=""/> :
+          {/* <img className="doctorListImg" src={params.row.profilePic} alt=""/> */}
+            {params.row.profilePic !== undefined ? <ImageLoader value={params.row.profilePic} varient={"circle"} /> :
             <div className="avtimgdoc"><BackgroundLetterAvatar value={params.row.username}/></div>}
           </div>
           <div className="doctorListItem">{params.row.username}</div>

@@ -4,6 +4,7 @@ import { HospitalContext } from "../../context/hospitalContext/HospitalContext";
 import { getAllHospitals } from "../../context/hospitalContext/apiCalls";
 import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import Navbar from "../../components/navbar/Navbar";
+import ImageLoader from '../../components/imageLoader/ImageLoader';
 
 export default function UserHome() {
 
@@ -32,7 +33,7 @@ export default function UserHome() {
     {hospitals.map((hospital) => 
     <div key={hospital._id} className="hospitalInfoForPatient">
     <div className="hospitalInfoItemForPatient">
-        {hospital.profilePic !== undefined ? <img className="hospitalPic" src={hospital.profilePic} alt=""/> :
+        {hospital.profilePic !== undefined ? <ImageLoader key={hospital.profilePic} value={hospital.profilePic} varient={"circle"} /> :
         <div className="hospitalPic"><BackgroundLetterAvatar value={hospital.hospitalname}/></div>}
         <span className="hospitalInfoName">{hospital.hospitalname}</span>
     </div>

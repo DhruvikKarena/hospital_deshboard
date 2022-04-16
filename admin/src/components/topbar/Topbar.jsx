@@ -8,6 +8,7 @@ import { NotificationsNone, Settings } from "@material-ui/icons";
 import { logOut } from "../../context/authContext/apiCalls";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { useContext } from "react";
+import ImageLoader from '../../components/imageLoader/ImageLoader';
 
 export default function Topbar() {
 
@@ -51,7 +52,8 @@ export default function Topbar() {
             <Settings />
           </div>
           <div className="topAvatar">
-            {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? <img className="topAvatar" src={JSON.parse(localStorage.getItem("user")).profilePic} alt=""/> :
+            {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? 
+            <ImageLoader value={JSON.parse(localStorage.getItem("user")).profilePic} varient={"circle"} /> :
             <div className="avtimgdoc"><BackgroundLetterAvatar value={JSON.parse(localStorage.getItem("user")).hospitalname}/></div>}
           </div>
           <Link to={"/"} className="link" onClick={handleLogout}><div className="logoutbtn">Log Out</div></Link>

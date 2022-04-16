@@ -13,12 +13,18 @@ export default function ImageLoader(props){
 
     return(
         <>
-        <img className="boximg" src={props.value} alt="" onLoad={imgloader}/> 
-        {!loaded && <div className="boximgProcess"><CircularProgress sx={{ color: '#11b82d' }} /> </div>}
+        {props.varient === 'circle' ? 
+        <><img className="hospitalPic" src={props.value} alt="" onLoad={imgloader}/>
+        {!loaded && <div className="hospitalPicProcess"><CircularProgress sx={{ color: '#11b82d' }} /> </div>}
+        </> : 
+        <><img className="boximg" src={props.value} alt="" onLoad={imgloader}/> 
+        {!loaded && <div className="boximgProcess"><CircularProgress sx={{ color: '#11b82d' }} /> </div>} </>
+        }
         </>
     )
 }
 
 ImageLoader.propTypes = {
     value: PropTypes.string.isRequired,
+    varient: PropTypes.string,
 };

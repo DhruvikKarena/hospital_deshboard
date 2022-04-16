@@ -13,6 +13,8 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import UserUpdate from '../userUpdate/UserUpdate';
 import CircularProgress from '@mui/material/CircularProgress';
 import ImageLoader from '../../components/imageLoader/ImageLoader';
+import { AuthContext } from "../../context/authContext/AuthContext";
+import { UserContext } from '../../context/userContext/UserContext';
 
 export default function UserHistory() {
 
@@ -26,6 +28,8 @@ export default function UserHistory() {
 
 
     const { patients, dispatch } = useContext(PatientContext);
+    const { user } = useContext(AuthContext);
+    const { users } = useContext(UserContext);
     const [toggleedit, setToggleedit] = useState(false);
     const [loaded, setLoaded] = useState(false);
 
@@ -46,13 +50,13 @@ export default function UserHistory() {
         <Navbar />
         <div className="userInfo">
         <div className="profile">
-        {JSON.parse(localStorage.getItem("user")).profilePic !== undefined ? 
+        {user.profilePic !== undefined ? 
         <>
-        <img className="profilePic" src={JSON.parse(localStorage.getItem("user")).profilePic} alt="" onLoad={imgloader}/> 
+        <img className="profilePic" src={users[0] !== undefined ? users[0].profilePic : user.profilePic} alt="" onLoad={imgloader}/> 
         {!loaded && <div className="profilePicProcess"><CircularProgress sx={{ color: '#11b82d' }} /> </div>}
         </> :
-        <div className='imgavt'><BackgroundLetterAvatar value={JSON.parse(localStorage.getItem("user")).full_name} /></div>}
-            <h1 className="profileName">{JSON.parse(localStorage.getItem("user")).full_name}</h1>
+        <div className='imgavt'><BackgroundLetterAvatar value={user.full_name} /></div>}
+            <h1 className="profileName">{users[0] !== undefined ? users[0].full_name : user.full_name}</h1>
         <ModeEditIcon sx={{ fontSize: 38 }} className='editbtn' onClick={handleToggleedit}/>
         </div>
         <div className="profileinfo">
@@ -62,37 +66,37 @@ export default function UserHistory() {
                 <Grid item xs={6} md={4}>
                 <Item elevation={0} >
                     <span className="profileinfoItem">UserName: </span>
-                    <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).full_name} </span></Item>
+                    <span className="profileinfoItem">{users[0] !== undefined ? users[0].full_name : user.full_name} </span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Age: </span> 
-                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).age}</span></Item>
+                <span className="profileinfoItem">{users[0] !== undefined ? users[0].age : user.age}</span></Item>
                 </Grid>
                 <Grid item xs={12} md={4} sm={6}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">ID: </span> 
-                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user"))._id}</span></Item>
+                <span className="profileinfoItem">{users[0] !== undefined ? users[0]._id : user._id}</span></Item>
                 </Grid>
                 <Grid item xs={12} md={4} sm={6}>
                 <Item elevation={0}>
                 <span className="profileinfoItem">Email: </span> 
-                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).email}</span></Item>
+                <span className="profileinfoItem">{users[0] !== undefined ? users[0].email : user.email}</span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Blood Group: </span> 
-                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).bloode_group}</span></Item>
+                <span className="profileinfoItem">{users[0] !== undefined ? users[0].bloode_group : user.bloode_group}</span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Phone Number: </span> 
-                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).phone_number}</span></Item>
+                <span className="profileinfoItem">{users[0] !== undefined ? users[0].phone_number : user.phone_number}</span></Item>
                 </Grid>
                 <Grid item xs={6} md={4}>
                 <Item elevation={0}> 
                 <span className="profileinfoItem">Address: </span> 
-                <span className="profileinfoItem">{JSON.parse(localStorage.getItem("user")).address}</span></Item>
+                <span className="profileinfoItem">{users[0] !== undefined ? users[0].address : user.address}</span></Item>
                 </Grid>
             </Grid>
             </Box>

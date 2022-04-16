@@ -3,7 +3,8 @@ import { Visibility } from "@material-ui/icons";
 import { useEffect, useContext } from "react";
 import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import { getDoctors } from "../../context/doctorContext/apiCalls";
-import { DoctorContext } from "../../context/doctorContext/DoctorContext"
+import { DoctorContext } from "../../context/doctorContext/DoctorContext";
+import ImageLoader from '../../components/imageLoader/ImageLoader';
 
 
 export default function WidgetSm() {
@@ -21,7 +22,7 @@ export default function WidgetSm() {
         {doctors.map((doctor) => ( 
         <li  key={doctor._id} className="widgetSmListItem">
           <div className="widgetSmImg">
-              {doctor.profilePic !== undefined ? <img className="widgetSmImg" src={doctor.profilePic} alt=""/> :
+              {doctor.profilePic !== undefined ? <ImageLoader value={doctor.profilePic} varient={"circle"} /> :
             <div className="avtimgdoc"><BackgroundLetterAvatar value={doctor.username}/></div>}
           </div>
           <div className="widgetSmUser">

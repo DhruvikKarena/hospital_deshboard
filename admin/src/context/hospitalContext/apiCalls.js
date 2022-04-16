@@ -13,12 +13,12 @@ export const updateHospital = async (hospital, dispatch) => {
   //console.log(Hospital);
   dispatch(updateHospitalStart());
   try {
-      await axios.put("/hospital/"+hospital.id, hospital, {
+    const res = await axios.put("/hospital/"+hospital.id, hospital, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
     });
-    dispatch(updateHospitalSuccess(hospital));
+    dispatch(updateHospitalSuccess(res.data));
   } catch (err) {
     dispatch(updateHospitalFailure());
   }

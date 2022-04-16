@@ -5,13 +5,14 @@ import { HospitalContext } from "../../context/hospitalContext/HospitalContext";
 import { updateHospital } from "../../context/hospitalContext/apiCalls";
 import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
+import ImageLoader from '../../components/imageLoader/ImageLoader';
 
 export default function HospitalInfo() {
 
     const hospitalInfo = JSON.parse(localStorage.getItem("user"));
     const [update_hospital, setUpdate_Hospital] = useState({id: hospitalInfo._id});
 
-    const {dispatch} = useContext(HospitalContext);
+    const {hospitals, dispatch} = useContext(HospitalContext);
     const [img, setImg] = useState(null);
     const [toggle, setToggle] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -62,7 +63,7 @@ export default function HospitalInfo() {
   
 
   const handleChange = (e) => {
-      console.log(e.target.name);
+      // console.log(e.target.name);
           //console.log("in 2 if")
           const value = e.target.value;
           setUpdate_Hospital({ ...update_hospital, [e.target.name]: value });
@@ -75,7 +76,7 @@ export default function HospitalInfo() {
 
   const handleUpdate = (e) => {
       
-      console.log(update_hospital);
+      // console.log(update_hospital);
       e.preventDefault();
       updateHospital(update_hospital, dispatch);
 
@@ -90,27 +91,28 @@ export default function HospitalInfo() {
           <div className="hospitalInfoTopRight">
               <div className="hospitalInfoInfoTop">
                   <div className="hospitalInfoInfoImg">
-                    {hospitalInfo.profilePic !== undefined ? <img className="hospitalInfoInfoImg" src={hospitalInfo.profilePic} alt=""/> :
-                    <div className="avtimgdoc"><BackgroundLetterAvatar value={hospitalInfo.hospitalname}/></div>}
+                    {hospitalInfo.profilePic !== undefined ? 
+                    <ImageLoader value={hospitals[0] !== undefined ? hospitals[0].profilePic : hospitalInfo.profilePic} varient={"circle"} /> :
+                    <div className="avtimgdoc"><BackgroundLetterAvatar value={hospitals[0] !== undefined ? hospitals[0].hospitalname : hospitalInfo.hospitalname}/></div>}
                   </div>
-                  <span className="hospitalInfoName">{hospitalInfo.hospitalname}</span>
+                  <span className="hospitalInfoName">{hospitals[0] !== undefined ? hospitals[0].hospitalname : hospitalInfo.hospitalname}</span>
               </div>
               <div className="hospitalInfoInfoBottom">
                   <div className="hospitalInfoInfoItem">
                       <span className="hospitalInfoInfoKey">Hospital Id:</span>
-                      <span className="hospitalInfoInfoValue" >{hospitalInfo._id}</span>
+                      <span className="hospitalInfoInfoValue" >{hospitals[0] !== undefined ? hospitals[0]._id : hospitalInfo._id}</span>
                   </div>
                   <div className="hospitalInfoInfoItem">
                       <span className="hospitalInfoInfoKey">Hospital Phone No.:</span>
-                      <span className="hospitalInfoInfoValue" >{hospitalInfo.phone_number}</span>
+                      <span className="hospitalInfoInfoValue" >{hospitals[0] !== undefined ? hospitals[0].phone_number : hospitalInfo.phone_number}</span>
                   </div>
                   <div className="hospitalInfoInfoItem">
                       <span className="hospitalInfoInfoKey">Hospital Email:</span>
-                      <span className="hospitalInfoInfoValue" >{hospitalInfo.email}</span>
+                      <span className="hospitalInfoInfoValue" >{hospitals[0] !== undefined ? hospitals[0].email : hospitalInfo.email}</span>
                   </div>
                   <div className="hospitalInfoInfoItem">
                       <span className="hospitalInfoInfoKey">Hospital Address:</span>
-                      <span className="hospitalInfoInfoValue" >{hospitalInfo.address}</span>
+                      <span className="hospitalInfoInfoValue" >{hospitals[0] !== undefined ? hospitals[0].address : hospitalInfo.address}</span>
                   </div>
                 </div>
           </div>

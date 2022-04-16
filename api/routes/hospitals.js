@@ -28,7 +28,8 @@ router.put("/:id", verify, async (req, res) => {
           },
           { new: true }
         );
-        res.status(200).json(updatedHospital);
+        const { password, ...info } = updatedHospital._doc;
+        res.status(200).json({...info});
       } catch (err) {
         res.status(500).json(err);
       }
