@@ -26,10 +26,10 @@ export const updateHospital = async (hospital, dispatch) => {
 
 //get all hospitals
 
-export const getAllHospitals = async (dispatch) => {
+export const getAllHospitals = async (position,dispatch) => {
   dispatch(getAllHospitalsStart());
   try {
-    const res = await axios.get("/hospital/allHospitals", {
+    const res = await axios.get("/hospital/allHospitals/?lat="+JSON.stringify(position.lat)+"&lng="+JSON.stringify(position.lng), {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },

@@ -237,11 +237,30 @@ router.put("/deletedoctor/:id", verify, async (req, res) => {
 router.get("/allHospitals", verify, async (req, res) => {
     try {
       const hospitals = await Hospital.find();
-      const all_hospital = [];
+      const query = req.query;
+      let all_hospital = [];
+      // console.log(Number(query.lat));
+      const pos = { lat: Number(Number(query.lat).toFixed(4)), lng: Number(Number(query.lng).toFixed(4)) };
+      // console.log(pos);
+      let temp = [];
+      let distance;
+      let longitude, latitude;
       for(i=0;i<hospitals.length;i++){
         const { password,appointments,cancel_appointments, ...info } = hospitals[i]._doc;
-        all_hospital.push(info);
+        latitude = Number(info.location[0].toFixed(4));
+        longitude = Number(info.location[1].toFixed(4));
+        distance=Math.sqrt((pos.lat - latitude)*(pos.lat - latitude) + (pos.lng - longitude)*(pos.lng - longitude));
+        distance = distance.toFixed(4);
+        temp.push(info);
+        temp.push(Number(distance));
+        // console.log(distance);
+        all_hospital.push(temp);
+        temp=[];
       }
+      all_hospital.sort(function(a,b) {
+        return a[1]-b[1]
+      });
+      // console.log(all_hospital);
       res.status(200).json(all_hospital);
     } catch (err) {
       res.status(500).json(err);
