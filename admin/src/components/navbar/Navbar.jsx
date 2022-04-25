@@ -26,6 +26,7 @@ export default function Navbar() {
               src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
               alt=""
             /> */}
+            <a className="link" href="https://www.w3schools.com"><span className="pagelinks">Prediction</span></a>
             <Link to={"/userhistory"} className="link"><span className="pagelinks">History</span></Link>
             <Link to={"/"} className="link"><span className="pagelinks" onClick={handleLogout}>Logout</span></Link>
           </div>

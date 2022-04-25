@@ -240,16 +240,18 @@ router.get("/allHospitals", verify, async (req, res) => {
       const query = req.query;
       let all_hospital = [];
       // console.log(Number(query.lat));
-      const pos = { lat: Number(Number(query.lat).toFixed(4)), lng: Number(Number(query.lng).toFixed(4)) };
+      const pos = { lat: Number(query.lat)-1, lng: Number(query.lng)-1 };
+      // console.log(pos);
       // console.log(pos);
       let temp = [];
       let distance;
       let longitude, latitude;
       for(i=0;i<hospitals.length;i++){
         const { password,appointments,cancel_appointments, ...info } = hospitals[i]._doc;
-        latitude = Number(info.location[0].toFixed(4));
-        longitude = Number(info.location[1].toFixed(4));
-        distance=Math.sqrt((pos.lat - latitude)*(pos.lat - latitude) + (pos.lng - longitude)*(pos.lng - longitude));
+        latitude = Number(info.location[0].toFixed(8));
+        longitude = Number(info.location[1].toFixed(8));
+        // console.log(latitude, "+", longitude);
+        distance=Math.sqrt(Math.pow((pos.lat - latitude),2) + Math.pow((pos.lng - longitude), 2));
         distance = distance.toFixed(4);
         temp.push(info);
         temp.push(Number(distance));
