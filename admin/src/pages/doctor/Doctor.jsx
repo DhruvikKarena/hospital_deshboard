@@ -48,6 +48,12 @@ export default function Doctor() {
                       <span className="doctorInfoKey">Total Treated Patients:</span>
                       <span className="doctorInfoValue">{doctor.patient_history.length}</span>
                   </div>
+                  <div className="doctorInfoItem">
+                    <span className="doctorInfoKey" id="doctor_licence">Doctor Licence:</span>
+                  </div>
+                  <div className="patientReports">
+                  {doctor.doctor_licence.map((licence) =>(<ImageLoader key={licence} value={licence} />))}
+                  </div>
               </div>
           </div>
       </div>
