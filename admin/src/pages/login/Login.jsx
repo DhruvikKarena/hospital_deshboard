@@ -23,7 +23,6 @@ export default function Login() {
     LocalStorage();
     if(radioButton === "hospital"){
       e.preventDefault();
-      //console.log(radioButton + email);
       loginHospital({ email, password }, dispatch);
     }
 
@@ -51,7 +50,6 @@ export default function Login() {
   }
 
   const handleSignup = (e) => {
-    //e.preventDefault();
     if(radioButton === "hospital"){
       registerHospital(user, dispatch);
       console.log(user);
@@ -66,7 +64,6 @@ export default function Login() {
       registerPatient(user, dispatch);
       console.log(user);
     }
-    //window.localStorage.setItem("user",null);
     setSignup(false);
   };
 
@@ -114,26 +111,6 @@ export default function Login() {
                         <input className="loginInput" type="radio"  id="hospital" name="login_type_radio" value="hospital" onChange={(e) => setRadioButton(e.target.value)}/>
                         <label htmlFor="patient">Hospital</label>
               </div>
-                    {/* <div id="user_show">
-                      <input className="loginInput" type="text" placeholder="User name" />
-                      <input className="loginInput" type="text" placeholder="Full Name" />
-                      <input className="loginInput" type="email" placeholder="Email" />
-                      <input className="loginInput" type="password" placeholder="Password" />
-                    </div>
-                    <div id="doctor_show">
-                      <input className="loginInput" type="text" placeholder="User name" />
-                      <input className="loginInput" type="text" placeholder="Doctor Full Name" />
-                      <input className="loginInput" type="email" placeholder="Email" />
-                      <input className="loginInput" type="password" placeholder="Password" />
-                    </div>
-                    <div id="hospital_show">
-                        <input className="loginInput" type="text" placeholder="Hospital name" />
-                        <input className="loginInput" type="email" placeholder="Email" />
-                        <input className="loginInput" type="password" placeholder="Password" />
-                        <input className="loginInput" type="text" placeholder="Mobile no." />
-                        <input className="loginInput" type="text" placeholder="Total Bed" />
-                        <input className="loginInput" type="text" placeholder="Vacant Bed" />
-                    </div> */}
                 <div>{SwitchUsers()}</div>
               <button className="loginButton" onClick={handleSignup}>Sign Up</button>
             </form>

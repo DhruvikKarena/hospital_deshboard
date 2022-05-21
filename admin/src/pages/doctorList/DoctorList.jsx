@@ -1,7 +1,6 @@
 import "./doctorList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-//import { doctorRows } from "../../dummyData";
 import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
@@ -18,12 +17,6 @@ export default function DoctorList() {
     getDoctors(dispatch);
   }, [dispatch]);
 
-  // const handleClick = (id) => {
-  //   setDoctor({ ...doctor, doctors_id: id });
-  //   console.log(doctor);
-  //   handleDelete();
-  // };
-
   const handleDelete = () => {
     console.log(doctor);
     deleteDoctor(doctor, dispatch);
@@ -39,7 +32,6 @@ export default function DoctorList() {
         return (
           <>
           <div className="doctorListItem">
-          {/* <img className="doctorListImg" src={params.row.profilePic} alt=""/> */}
             {params.row.profilePic !== undefined ? <ImageLoader value={params.row.profilePic} varient={"circle"} /> :
             <div className="avtimgdoc"><BackgroundLetterAvatar value={params.row.username}/></div>}
           </div>

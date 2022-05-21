@@ -2,9 +2,6 @@ import { useLocation } from "react-router-dom";
 import "./doctor.css";
 import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import ImageLoader from '../../components/imageLoader/ImageLoader';
-//import Chart from "../../components/chart/Chart"
-//import {doctorData} from "../../dummyData"
-//import { Publish } from "@material-ui/icons";
 
 export default function Doctor() {
     const location = useLocation();
@@ -57,32 +54,6 @@ export default function Doctor() {
               </div>
           </div>
       </div>
-      {/* <div className="doctorBottom">
-          <form className="doctorForm">
-              <div className="doctorFormLeft">
-                  <label>doctor Id</label>
-                  <input type="text" placeholder="doctor Id" />
-                  <label>Doctor Name</label>
-                  <input type="text" placeholder="Doctor Name" />
-                  <label>Cause Of Illness</label>
-                  <input type="text" placeholder="Cause Of Illness" />
-                  <label>Medicines</label>
-                  <input type="text" placeholder="Medicines" />
-                  <label>Photos of Reports</label>
-                  <input type="file" />
-              </div>
-              <div className="doctorFormRight">
-                  <div className="doctorUpload">
-                      <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="doctorUploadImg" />
-                      <label for="file">
-                          <Publish/>
-                      </label>
-                      <input type="file" id="file" style={{display:"none"}} />
-                  </div>
-                  <button className="doctorButton">Update</button>
-              </div>
-          </form>
-      </div> */}
     </div>
   );
 }

@@ -45,7 +45,6 @@ router.post("/registerdoctor", async (req, res) => {
 
 //REGISTER FOR HOSPITAL
 router.post("/registerHospital", async (req, res) => {
-  //console.log(req.body);
   const newHospital = new Hospital({
     hospitalname: req.body.hospitalname,
     email: req.body.email,
@@ -77,7 +76,6 @@ router.post("/login", async (req, res) => {
     originalPassword !== req.body.password &&
      res.status(401).json("Wrong password or username!");
 
-    //res.status(200).json(user);
     const accessToken = jwt.sign(
       { id: user._id },
       process.env.SECRET_KEY,
@@ -104,7 +102,6 @@ router.post("/loginDoctor", async (req, res) => {
     originalPassword !== req.body.password &&
      res.status(401).json("Wrong password or username!");
 
-    //res.status(200).json(user);
     const accessToken = jwt.sign(
       { id: doctor._id, isDoctor: doctor.isDoctor },
       process.env.SECRET_KEY,
@@ -131,8 +128,6 @@ router.post("/loginHospital", async (req, res) => {
     originalPassword !== req.body.password &&
      res.status(401).json("Wrong password or hospitalname!");
 
-    
-    //res.status(200).json(user);
     const accessToken = jwt.sign(
       { id: hospital._id, isHospital: hospital.isHospital },
       process.env.SECRET_KEY,

@@ -14,7 +14,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { DoctorContext } from '../../context/doctorContext/DoctorContext';
 import ImageLoader from '../../components/imageLoader/ImageLoader';
-// import { Suspense } from 'react';
 
 export default function DoctorHome() {
 

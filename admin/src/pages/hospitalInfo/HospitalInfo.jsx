@@ -16,13 +16,10 @@ export default function HospitalInfo() {
     const [img, setImg] = useState(null);
     const [toggle, setToggle] = useState(false);
     const [progress, setProgress] = useState(0);
-    // console.log(hospitalInfo);
 
     const handleToggle = (e) => {
-      //e.preventDefault();
       setToggle(!toggle);
       setProgress(0);
-      //console.log(toggle);
     }
 
     const upload = (items) => {
@@ -35,7 +32,6 @@ export default function HospitalInfo() {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               setProgress(progress);
-            // console.log("Upload is " + progress + "% done");
           },
           (error) => {
             console.log(error);
@@ -45,7 +41,6 @@ export default function HospitalInfo() {
               setUpdate_Hospital((prev) => {
                 return { ...prev, [item.label]: url };
               });
-              //setUploaded((prev) => prev + 1);
               handleToggle();
             });
           }
@@ -63,20 +58,12 @@ export default function HospitalInfo() {
   
 
   const handleChange = (e) => {
-      // console.log(e.target.name);
-          //console.log("in 2 if")
-          const value = e.target.value;
-          setUpdate_Hospital({ ...update_hospital, [e.target.name]: value });
-          // console.log("value "+value);
-          // console.log(typeof(value));
-
-      // setUpdate_hospital({ ...update_hospital, vacant_beds: hospital.vacant_bed });
+        const value = e.target.value;
+        setUpdate_Hospital({ ...update_hospital, [e.target.name]: value });
     };
 
 
   const handleUpdate = (e) => {
-      
-      // console.log(update_hospital);
       e.preventDefault();
       updateHospital(update_hospital, dispatch);
 

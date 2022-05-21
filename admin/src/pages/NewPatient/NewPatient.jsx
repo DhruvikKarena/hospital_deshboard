@@ -7,37 +7,12 @@ import CircularProgressWithLabel from '../../components/CircularProgressWithLabe
 
 
 export default function NewPatient() {
-  // const [hospital, setHospital] = useState([]);
-  // 
-  // useEffect(() => {
-  //   const getHospital = async () => {
-  //     try{
-
-  //       const res = await axios.get("/hospital/find/"+JSON.parse(localStorage.getItem("user"))._id, {
-  //         headers: {
-  //           token : "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-  //         },
-  //       });
-  //       setHospital(res.data);
-  //     }catch(err){
-  //       console.log(err);
-  //     }
-  //   };
-  //   getHospital();
-  // },[])
-  //console.log(hospital);
 
   const [patient, setPatient] = useState({vacant_beds: JSON.parse(localStorage.getItem("user")).vacant_bed});
-
-//   useEffect(() => {
-//     setPatient(update_patient => ({ ...update_patient, 
-//         vacant_beds: JSON.parse(localStorage.getItem("user")).vacant_bed }));
-// }, JSON.parse(localStorage.getItem("user")).vacant_bed);
 
   const [img, setImg] = useState(null);
   const [toggle, setToggle] = useState(false);
   const [progress, setProgress] = useState(0);
-  //const [uploaded, setUploaded] = useState(0);
 
   const {dispatch} = useContext(PatientContext);
 
@@ -50,12 +25,10 @@ export default function NewPatient() {
       const value = e.target.value;
       setPatient({ ...patient, [e.target.name]: value });
     }
-      //setPatient({ ...patient, [e.target.name]: value });
       console.log(patient);
       if(e.target.name === "isAdmitted" && e.target.value === "true"){
         const temp = JSON.parse(window.localStorage.getItem("user"));
         temp["vacant_bed"] =  patient.vacant_beds - 1;
-        //console.log(temp);
         window.localStorage.setItem("user", JSON.stringify(temp));
     }
   };
@@ -70,7 +43,6 @@ export default function NewPatient() {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             setProgress(progress);
-          // console.log("Upload is " + progress + "% done");
         },
         (error) => {
           console.log(error);
@@ -80,7 +52,6 @@ export default function NewPatient() {
             setPatient((prev) => {
               return { ...prev, [item.label]: url };
             });
-            //setUploaded((prev) => prev + 1);
             handleToggle();
           });
         }
@@ -89,19 +60,15 @@ export default function NewPatient() {
   };
 
   const handleUpload = (e) => {
-    //setPatient({ ...patient, vacant_beds: hospital.vacant_bed });
     e.preventDefault();
     upload([
       { file: img, label: "photos_of_reports" },
     ]);
-    //handleToggle();
   };
 
   const handleToggle = (e) => {
-    //e.preventDefault();
     setToggle(!toggle);
     setProgress(0);
-    // console.log(toggle);
   }
 
   const handleSubmit = (e) => {
@@ -191,8 +158,6 @@ export default function NewPatient() {
             {toggle ? <CircularProgressWithLabel value={progress} /> : <></>}
             </div>
         </div>
-        {/* {uploaded === 1 ? (<button className="addPatientButton" onClick={handleSubmit}>Create</button>):
-        (<button className="addPatientButton" onClick={handleUpload}>Upload</button>)} */}
       </form>
     </div>
   );

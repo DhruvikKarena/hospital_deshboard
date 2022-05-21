@@ -1,9 +1,7 @@
 import { DoctorContext } from '../../context/doctorContext/DoctorContext';
 import { useContext, useState } from "react";
-// import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import storage from "../../firebase";
-// import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import './doctorUpdate.css';
 import { updateDoctor } from '../../context/doctorContext/apiCalls';
@@ -30,7 +28,6 @@ export default function DoctorUpdate() {
     const [progress, setProgress] = useState(0);
 
     const handleToggle = (e) => {
-        //e.preventDefault();
         setToggle(!toggle);
         setProgress(0);
       }
@@ -45,7 +42,6 @@ export default function DoctorUpdate() {
               const progress =
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 setProgress(progress);
-            //   console.log("Upload is " + progress + "% done");
             },
             (error) => {
               console.log(error);
@@ -55,7 +51,6 @@ export default function DoctorUpdate() {
                 setUpdate_Doctor((prev) => {
                   return { ...prev, [item.label]: url };
                 });
-                //setUploaded((prev) => prev + 1);
                 handleToggle();
               });
             }
@@ -69,21 +64,18 @@ export default function DoctorUpdate() {
             upload([
                 { file: img, label: "profilePic" },
             ]);
-            // console.log("img");
         }
 
         if(licenceimg !== null){
             upload([
                 { file: licenceimg, label: "doctor_licence" },
             ]);
-            // console.log("licenceimg");
         }
     };
 
 
     const handleChange = (e) => {
         e.preventDefault();
-        // console.log(e.target.value)
         if(e.target.value.length > 1){
             const value = e.target.value;
             setUpdate_Doctor({ ...update_doctor, [e.target.name]: value });
@@ -91,7 +83,6 @@ export default function DoctorUpdate() {
     };
 
     const handleUpdate = (e) => {
-        // console.log(update_user);
         e.preventDefault();
        updateDoctor(update_doctor, dispatch);
         setUpdate_Doctor({id: JSON.parse(localStorage.getItem("user"))._id});

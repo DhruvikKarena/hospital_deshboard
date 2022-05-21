@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./topbar.css";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
 import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 import { NotificationsNone, Settings } from "@material-ui/icons";
 import { logOut } from "../../context/authContext/apiCalls";
@@ -17,25 +15,6 @@ export default function Topbar() {
   const handleLogout = (e) => {
     logOut(dispatch);
   }
-
-  // const [hospital, setHospital] = useState([]);
-
-  // useEffect(() => {
-  //   const getHospital = async () => {
-  //     try{
-
-  //       const res = await axios.get("/hospital/find/"+JSON.parse(localStorage.getItem("user"))._id, {
-  //         headers: {
-  //           token : "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-  //         },
-  //       });
-  //       setHospital(res.data);
-  //     }catch(err){
-  //       console.log(err);
-  //     }
-  //   };
-  //   getHospital();
-  // },[])
 
   return (
     <div className="topbar">

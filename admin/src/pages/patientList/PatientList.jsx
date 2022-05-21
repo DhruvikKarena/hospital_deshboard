@@ -1,7 +1,6 @@
 import "./patientList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-//import { PatientRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { PatientContext } from "../../context/patientContext/PatientContext";
@@ -9,7 +8,6 @@ import { deletePatient, getPatients } from "../../context/patientContext/apiCall
 import BackgroundLetterAvatar from "../../components/avatar/Avatar";
 
 export default function PatientList() {
-  //const [data, setData] = useState(PatientRows);
 
   const { patients, dispatch } = useContext(PatientContext);
 
@@ -22,7 +20,6 @@ export default function PatientList() {
   };
 
   const handleDelete = (id) => {
-    //setData(data.filter((item) => item.id !== id));
     deletePatient(id, dispatch);
   };
 

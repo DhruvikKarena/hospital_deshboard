@@ -3,10 +3,6 @@ import "./patient.css";
 import { useContext, useState } from "react";
 import storage from "../../firebase";
 import BackgroundLetterAvatar from "../../components/avatar/Avatar";
-//import axios from "axios";
-//import Chart from "../../components/chart/Chart"
-//import {patientData} from "../../dummyData"
-// import { Publish } from "@material-ui/icons";
 import { updatePatient } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
 import CircularProgressWithLabel from '../../components/CircularProgressWithLabel/CircularProgressWithLabel';
@@ -14,28 +10,6 @@ import ImageLoader from '../../components/imageLoader/ImageLoader';
 
 
 export default function Patient() {
-
-    // const [hospital, setHospital] = useState([]);
-
-    // useEffect(() => {
-    //     const getHospital = async () => {
-    //       try{
-    
-    //         const res = await axios.get("/hospital/find/"+JSON.parse(localStorage.getItem("user"))._id, {
-    //           headers: {
-    //             token : "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-    //           },
-    //         });
-    //         setHospital(res.data);
-    //       }catch(err){
-    //         console.log(err);
-    //       }
-    //     };
-    //     getHospital();
-    //     setUpdate_Patient(update_patient => ({ ...update_patient, id: patient._id, 
-    //         hospital_id: JSON.parse(localStorage.getItem("user"))._id }));
-    //   },[])
-
     const location = useLocation();
     const patient = location.patient;
     
@@ -47,15 +21,10 @@ export default function Patient() {
     const [img, setImg] = useState(null);
     const [toggle, setToggle] = useState(false);
     const [progress, setProgress] = useState(0);
-    // useEffect(() => {
-    //     setUpdate_Patient(update_patient => ({ ...update_patient, }));
-    // }, patient._id);
 
     const handleToggle = (e) => {
-        //e.preventDefault();
         setToggle(!toggle);
         setProgress(0);
-        // console.log(toggle);
       }
 
       const upload = (items) => {
@@ -68,7 +37,6 @@ export default function Patient() {
               const progress =
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 setProgress(progress);
-              // console.log("Upload is " + progress + "% done");
             },
             (error) => {
               console.log(error);
@@ -78,7 +46,6 @@ export default function Patient() {
                 setUpdate_Patient((prev) => {
                   return { ...prev, [item.label]: url };
                 });
-                //setUploaded((prev) => prev + 1);
                 handleToggle();
               });
             }
@@ -108,21 +75,15 @@ export default function Patient() {
         }
 
         if(e.target.name === "amount" && e.target.value !== ""){
-            //console.log("in 2 if")
             const value = parseFloat(e.target.value);
-            //const value = e.target.value;
             setUpdate_Patient({ ...update_patient, [e.target.name]: value });
-            // console.log("value "+value);
-            // console.log(typeof(value));
         }
 
         if(e.target.name === "isAdmitted" && e.target.value === "false"){
             const temp = JSON.parse(window.localStorage.getItem("user"));
             temp["vacant_bed"] =  update_patient.vacant_beds + 1;
-            //console.log(temp);
             window.localStorage.setItem("user", JSON.stringify(temp));
         }
-        // setUpdate_Patient({ ...update_patient, vacant_beds: hospital.vacant_bed });
       };
 
 
@@ -233,10 +194,6 @@ export default function Patient() {
               </div>
               <div className="patientFormRight">
                   <div className="patientUpload">
-                      {/* <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="patientUploadImg" />
-                      <label type="file">
-                          <Publish/>
-                      </label> */}
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>
                   {toggle ? (<button className="patientButton" onClick={handleUpload} >Upload</button>) :

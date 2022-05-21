@@ -33,7 +33,6 @@ export default function Home() {
             token : "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
-        //setUserStates(res.data)
         const patientsList = res.data.sort(function(a,b){
           return a._id - b._id;
         });

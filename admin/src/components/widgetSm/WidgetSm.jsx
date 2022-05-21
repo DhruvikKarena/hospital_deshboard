@@ -18,7 +18,6 @@ export default function WidgetSm() {
     <div className="widgetSm">
       <span className="widgetSmTitle">Doctor's Information</span>
       <ul className="widgetSmList">
-        {/* {console.log(doctors)} */}
         {doctors.map((doctor) => ( 
         <li  key={doctor._id} className="widgetSmListItem">
           <div className="widgetSmImg">

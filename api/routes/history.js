@@ -30,7 +30,6 @@ router.post("/", verify, async (req, res) => {
 
           //update hospital patient information
           if(req.body.isAdmitted === "true"){
-            //console.log(req.body.isAdmitted + req.body.vacant_beds );
             try {
               const updatedhospital = await Hospital.findByIdAndUpdate(
                 history[0].hospital_id,
@@ -89,7 +88,6 @@ router.post("/", verify, async (req, res) => {
 //UPDATE
 
 router.put("/:id", verify, async (req, res) => {
-  //console.log(req.body);
   if (req.user.isDoctor || req.user.isHospital) {
     try {
       const updatedHistory = await History.findByIdAndUpdate(
@@ -107,21 +105,15 @@ router.put("/:id", verify, async (req, res) => {
         },
         { new: true }
       );
-      //res.status(200).json(updatedHistory);
-      //console.log(req.body);
       if(req.body.isAdmitted === "false"){
-        //let value = req.body.vacant_beds - parseInt(1) ;
-        //console.log(value);
         const temp = await Hospital.findByIdAndUpdate(
           req.body.hospital_id,
           {
-            // $set: req.body
             $set: {vacant_bed: req.body.vacant_beds + 1 }
           },
           { new: true }
         );
       }
-      //res.status(200).json(updatedHistory);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -135,7 +127,6 @@ router.put("/:id", verify, async (req, res) => {
 router.delete("/:id", verify, async (req, res) => {
   if (req.user.isDoctor || req.user.isHospital) {
     const history = await History.findById(req.params.id);
-      //console.log(history);
       if(history != null){
         //delete from user medical history
         try {

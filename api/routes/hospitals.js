@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const Hospital = require("../models/Hospitals");
 const History = require("../models/History");
-//const User = require("../models/Users");
 const Doctor = require("../models/Doctors");
 const CryptoJS = require("crypto-js");
 const verify = require("../verifyToken");
@@ -87,7 +86,6 @@ router.get("/findPatients/:id", verify, async (req, res) => {
       const hospital = await Hospital.findById(req.params.id);
       let length = hospital.patient_info.length;
       let store_info = [];
-      //console.log(hospital.patient_info[0]);
       for(i=0;i!=5;i++){
         const temp = await History.findById(hospital.patient_info[length-1-i]);
         if(temp != null){
@@ -128,7 +126,6 @@ router.get("/stats/:id", verify, async (req, res) => {
         {
           $group: {
             _id: "$month",
-            //hospital_id: req.params.id,
             total: { $sum: 1 },
           },
         },
@@ -239,10 +236,7 @@ router.get("/allHospitals", verify, async (req, res) => {
       const hospitals = await Hospital.find();
       const query = req.query;
       let all_hospital = [];
-      // console.log(Number(query.lat));
       const pos = { lat: Number(query.lat)-1, lng: Number(query.lng)-1 };
-      // console.log(pos);
-      // console.log(pos);
       let temp = [];
       let distance;
       let longitude, latitude;
@@ -250,19 +244,16 @@ router.get("/allHospitals", verify, async (req, res) => {
         const { password,appointments,cancel_appointments, ...info } = hospitals[i]._doc;
         latitude = Number(info.location[0].toFixed(8));
         longitude = Number(info.location[1].toFixed(8));
-        // console.log(latitude, "+", longitude);
         distance=Math.sqrt(Math.pow((pos.lat - latitude),2) + Math.pow((pos.lng - longitude), 2));
         distance = distance.toFixed(4);
         temp.push(info);
         temp.push(Number(distance));
-        // console.log(distance);
         all_hospital.push(temp);
         temp=[];
       }
       all_hospital.sort(function(a,b) {
         return a[1]-b[1]
       });
-      // console.log(all_hospital);
       res.status(200).json(all_hospital);
     } catch (err) {
       res.status(500).json(err);

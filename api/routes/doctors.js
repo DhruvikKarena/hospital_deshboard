@@ -44,8 +44,6 @@ router.put("/:id", verify, async (req, res) => {
  //GET All history of treated patients 
 
 router.get("/doc-patient-history/:id", verify, async (req, res) => {
-  //  console.log("body= ",req.body);
-  // console.log("p= ",req.params.id);
   if(req.user.id === req.params.id){
     try {
       const doctor = await Doctor.findById(req.params.id);

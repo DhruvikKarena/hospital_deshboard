@@ -110,7 +110,6 @@
   display: flex;
   flex-direction: column;
   margin-top: 300px;
-  /* justify-content: space-around; */
 }
 
 .patientUpload{

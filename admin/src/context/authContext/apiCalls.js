@@ -18,8 +18,6 @@ export const registerHospital = async (user, dispatch) => {
   dispatch(registerStart());
   try {
      await axios.post("auth/registerHospital", user);
-    //console.log(user);
-    //res.data.isHospital && dispatch(registerSuccess(res.data));
   } catch (err) {
     dispatch(registerFailure());
   }
@@ -30,8 +28,6 @@ export const registerDoctor = async (user, dispatch) => {
   dispatch(registerStart());
   try {
     await axios.post("auth/registerdoctor", user);
-    //console.log(user);
-    //res.data.isHospital && dispatch(registerSuccess(res.data));
   } catch (err) {
     dispatch(registerFailure());
   }

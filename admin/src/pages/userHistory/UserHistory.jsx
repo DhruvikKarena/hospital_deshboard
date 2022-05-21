@@ -9,7 +9,6 @@ import { getPatientHistory } from "../../context/patientContext/apiCalls";
 import { PatientContext } from "../../context/patientContext/PatientContext";
 import Navbar from "../../components/navbar/Navbar";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-// import { Link } from 'react-router-dom'; 
 import UserUpdate from '../userUpdate/UserUpdate';
 import CircularProgress from '@mui/material/CircularProgress';
 import ImageLoader from '../../components/imageLoader/ImageLoader';
